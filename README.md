@@ -1,0 +1,1 @@
+# Jakub_Jedros_Projekt_Aplikacji_Mobilnej
