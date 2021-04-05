@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">QuizApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="game_name">QUIZMAKER</string>
+    <string name="main_menu_start_button">START LEARNING</string>
+    <string name="main_menu_set_manager_button">MANAGE QUESTIONS</string>
+    <string name="settings">SETTINGS</string>
 </resources>

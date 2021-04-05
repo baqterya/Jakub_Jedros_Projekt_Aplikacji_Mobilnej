@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MainActivity">
+    tools:context=".view.activity.QuizActivity">
 
     <FrameLayout
-        android:id="@+id/main_menu_container"
+        android:id="@+id/quiz_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
