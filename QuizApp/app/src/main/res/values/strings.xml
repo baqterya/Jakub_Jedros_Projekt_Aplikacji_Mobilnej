@@ -6,4 +6,8 @@
     <string name="main_menu_start_button">START LEARNING</string>
     <string name="main_menu_set_manager_button">MANAGE QUESTIONS</string>
     <string name="settings">SETTINGS</string>
+    <string name="nav_question_sets">Question Sets</string>
+    <string name="nav_settings">Settings</string>
+    <string name="open">Open navigation drawer</string>
+    <string name="close">Close navigation drawer</string>
 </resources>
