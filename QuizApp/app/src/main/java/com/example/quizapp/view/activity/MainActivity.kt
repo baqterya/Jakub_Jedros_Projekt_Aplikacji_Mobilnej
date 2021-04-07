@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
 import com.example.quizapp.R
-import com.example.quizapp.view.fragment.LanguageListFragment
+import com.example.quizapp.view.fragment.QuestionSetListFragment
+import com.example.quizapp.view.fragment.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.recyclerViewContainer, LanguageListFragment())
+        fragmentTransaction.replace(R.id.recyclerViewContainer, QuestionSetListFragment())
         fragmentTransaction.commit()
 
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.nav_question_sets -> Toast.makeText(applicationContext, "question sets", Toast.LENGTH_SHORT).show()
-                R.id.nav_settings -> Toast.makeText(applicationContext, "settings", Toast.LENGTH_SHORT).show()
+                R.id.nav_question_sets -> changeFragment(0)
+                R.id.nav_settings -> changeFragment(1)
             }
             true
         }
@@ -42,6 +42,25 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun changeFragment(fragmentCode: Int) {
+        when(fragmentCode) {
+            0 -> {
+                Toast.makeText(this, "GO TO QUESTION SETS", Toast.LENGTH_SHORT).show()
+                val transaction = this.supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.recyclerViewContainer, QuestionSetListFragment())
+                transaction.addToBackStack("QuestionSetList")
+                transaction.commit()
+            }
+            1 -> {
+                Toast.makeText(this, "GO TO SETTINGS", Toast.LENGTH_SHORT).show()
+                val transaction = this.supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.recyclerViewContainer, SettingsFragment())
+                transaction.addToBackStack("Settings")
+                transaction.commit()
+            }
+        }
     }
 
 }

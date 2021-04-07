@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.LanguageListFragment">
+    tools:context=".view.fragment.QuestionSetListFragment">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="90sp"
-        android:text="hello"
+        android:text="SETS"
         android:textColor="@color/new_on_background"
         android:gravity="center"/>
 

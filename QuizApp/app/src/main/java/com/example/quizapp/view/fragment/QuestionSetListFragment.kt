@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.quizapp.R
 
-class LanguageListFragment : Fragment() {
+class QuestionSetListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_language_list, container, false)
+        return inflater.inflate(R.layout.fragment_list_question_sets, container, false)
     }
 
     companion object {
