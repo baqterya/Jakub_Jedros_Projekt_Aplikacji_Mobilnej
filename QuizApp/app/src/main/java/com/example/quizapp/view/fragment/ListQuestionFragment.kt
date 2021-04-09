@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.quizapp.R
 
-class QuestionListFragment : Fragment() {
+class ListQuestionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

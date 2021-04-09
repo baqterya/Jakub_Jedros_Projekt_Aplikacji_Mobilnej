@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.example.quizapp.R
 import com.example.quizapp.databinding.ActivityMainBinding
-import com.example.quizapp.view.fragment.QuestionSetListFragment
+import com.example.quizapp.view.fragment.ListQuestionSetFragment
 import com.example.quizapp.view.fragment.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.recyclerViewContainer, QuestionSetListFragment())
+        fragmentTransaction.replace(R.id.recyclerViewContainer, ListQuestionSetFragment())
         fragmentTransaction.commit()
 
         binding.navigationView.setNavigationItemSelectedListener {
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             0 -> {
                 Toast.makeText(this, "GO TO QUESTION SETS", Toast.LENGTH_SHORT).show()
                 val transaction = this.supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.recyclerViewContainer, QuestionSetListFragment())
+                transaction.replace(R.id.recyclerViewContainer, ListQuestionSetFragment())
                 transaction.addToBackStack("QuestionSetList")
                 transaction.commit()
             }

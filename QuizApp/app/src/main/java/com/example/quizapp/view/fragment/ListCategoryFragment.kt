@@ -7,16 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.quizapp.R
 
-class QuestionSetListFragment : Fragment() {
+
+class ListCategoryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_list_question_sets, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_list_category, container, false)
     }
 
     companion object {
+
     }
 }
