@@ -1,8 +1,8 @@
 package com.example.quizapp.model
 
 import androidx.room.*
-import com.example.quizapp.model.relations.CategoryQuestionRelation
-import com.example.quizapp.model.relations.QuestionAnswerRelation
+import com.example.quizapp.model.relations.QuestionSetWithCategories
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface QuestionSetDao {
@@ -13,22 +13,13 @@ interface QuestionSetDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCategory(category: Category)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertQuestion(question: Question)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAnswer(answer: Answer)
-
     @Transaction
-    @Query("SELECT * FROM questionSet WHERE questionSetName = :questionSetName")
-    suspend fun getQuestionSetWithCategoriesByQuestionSet(questionSetName: String): List<CategoryQuestionRelation>
+    @Query("SELECT * FROM question_set_table")
+    fun getQuestionSetsAndCategories(): List<QuestionSetWithCategories>
 
-    @Transaction
-    @Query("SELECT * FROM category WHERE categoryName = :categoryName")
-    suspend fun getCategoryWithQuestionsByCategory(categoryName: String): List<CategoryQuestionRelation>
+    @Query("SELECT * FROM question_set_table ORDER BY questionSetName ASC")
+    fun getAllQuestionSets(): Flow<List<QuestionSet>>
 
-    @Transaction
-    @Query("SELECT * FROM question WHERE questionText = :questionText")
-    suspend fun getQuestionAndAnswerByQuestion(questionText: String): List<QuestionAnswerRelation>
-
+    @Query("DELETE FROM question_set_table")
+    suspend fun deleteAllQuestionSets()
 }
