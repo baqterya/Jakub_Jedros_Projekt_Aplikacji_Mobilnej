@@ -3,16 +3,19 @@ package com.example.quizapp.view.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.quizapp.QuestionSetApplication
 import com.example.quizapp.R
 import com.example.quizapp.databinding.ActivityMainBinding
-import com.example.quizapp.view.fragment.FragmentCommunicator
 import com.example.quizapp.view.fragment.ListQuestionSetFragment
 import com.example.quizapp.view.fragment.SettingsFragment
+import com.example.quizapp.viewmodel.QuestionSetViewModel
+import com.example.quizapp.viewmodel.QuestionSetViewModelFactory
 
-class MainActivity : AppCompatActivity(), FragmentCommunicator {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
@@ -57,15 +60,8 @@ class MainActivity : AppCompatActivity(), FragmentCommunicator {
         transaction.commit()
     }
 
-    override fun passDataCom(textInput: String) {
-        val bundle = Bundle()
-        bundle.putString("TEXT_INPUT", textInput)
-
-        val transaction =  this.supportFragmentManager.beginTransaction()
-        val fragment = ListQuestionSetFragment()
-        transaction.replace(R.id.recyclerViewContainer, fragment)
-        transaction.addToBackStack("QuestionSetList")
-        transaction.commit()
+    val questionSetViewModel: QuestionSetViewModel by viewModels {
+        QuestionSetViewModelFactory((QuestionSetApplication()).repository)
     }
 
 }

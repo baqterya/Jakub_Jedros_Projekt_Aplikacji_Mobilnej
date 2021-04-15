@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class QuestionSetViewModel(private val repository: Repository) : ViewModel() {
-    val allQuestionSEts: LiveData<List<QuestionSet>> =  repository.allQuestionSets.asLiveData()
+    val allQuestionSets: LiveData<List<QuestionSet>> =  repository.allQuestionSets.asLiveData()
 
     fun insert(questionSet: QuestionSet) = viewModelScope.launch {
         repository.insertQuestionSet(questionSet)

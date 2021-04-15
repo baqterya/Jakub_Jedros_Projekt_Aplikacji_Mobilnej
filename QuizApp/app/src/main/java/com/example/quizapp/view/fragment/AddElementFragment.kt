@@ -7,16 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentAddElementBinding
 import com.example.quizapp.databinding.FragmentListQuestionSetsBinding
+import com.example.quizapp.view.activity.MainActivity
 
 
 class AddElementFragment : Fragment() {
 
     lateinit var binding: FragmentAddElementBinding
     private lateinit var editQuestionSet: EditText
-    private lateinit var communicator: FragmentCommunicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +37,19 @@ class AddElementFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddElementBinding.bind(view)
+        editQuestionSet = binding.addElementEdittext
 
-        communicator = activity as FragmentCommunicator
-        // TODO change interface to viewmodel
 
         val submitButton = binding.addElementSubmitButton
         submitButton.setOnClickListener {
-            val listQuestionSetFragment = ListQuestionSetFragment()
-            communicator.passDataCom(binding.addElementEdittext.text.toString())
+            setFragmentResult(
+                ListQuestionSetFragment.ADD_QUESTION_SET,
+                bundleOf(
+                    ListQuestionSetFragment.QUESTION_SET_NAME to editQuestionSet.text.toString()
+                )
+            )
+            val fragment = ListQuestionSetFragment()
+            (activity as MainActivity).changeFragment(fragment)
         }
     }
 }
