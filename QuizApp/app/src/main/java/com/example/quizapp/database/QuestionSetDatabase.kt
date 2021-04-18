@@ -14,49 +14,32 @@ import kotlinx.coroutines.launch
 @Database(
     entities = [
         QuestionSet::class,
-        Category::class
+        // Category::class
     ],
     version = 1,
     exportSchema = false
 )
-public abstract class QuestionSetDatabase : RoomDatabase() {
-    abstract fun questionSetDao() : QuestionSetDao
+abstract class QuestionSetDatabase : RoomDatabase() {
+    abstract fun questionSetDao(): QuestionSetDao
 
     companion object {
         @Volatile
         private var INSTANCE: QuestionSetDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): QuestionSetDatabase {
-            return INSTANCE ?: synchronized(this) {
+        fun getDatabase(context: Context): QuestionSetDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    QuestionSetDatabase::class.java,
-                    "question_set_database"
-                ).addCallback(QuestionSetDatabaseCallback(scope)).build()
+                         context.applicationContext,
+                        QuestionSetDatabase::class.java,
+                        "question_set_database"
+                ).build()
                 INSTANCE = instance
-                instance
+                return instance
             }
-        }
-    }
-
-    private class QuestionSetDatabaseCallback(private val scope: CoroutineScope) :
-        RoomDatabase.Callback() {
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            INSTANCE?.let {database ->
-                scope.launch {
-                    populateDatabase(database.questionSetDao())
-                }
-            }
-        }
-
-        suspend fun populateDatabase(questionSetDao: QuestionSetDao) {
-            questionSetDao.deleteAllQuestionSets()
-
-            var questionSet = QuestionSet(0, "Fruits and Vegetables")
-            questionSetDao.insertQuestionSet(questionSet)
-            questionSet = QuestionSet(1, "Family")
-            questionSetDao.insertQuestionSet(questionSet)
         }
     }
 }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.AddElementFragment">
+    tools:context=".view.fragment.AddQuestionSetFragment">
 
     <TextView
-        android:id="@+id/add_element_textview"
+        android:id="@+id/addQuestionSetTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -17,11 +18,10 @@
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
-        android:id="@+id/add_element_edittext"
+        android:id="@+id/addQuestionSetEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -31,19 +31,19 @@
         android:textColor="@color/new_on_primary"
         android:textSize="25sp"
         android:textAlignment="center"
-        android:autofillHints="CREATE NEW QUESTION SET"
-        app:layout_constraintTop_toBottomOf="@id/add_element_textview"
-        android:inputType="text"
-        android:labelFor="@id/add_element_edittext" />
+        android:hint="@string/name"
+        android:autofillHints="@string/edit_name"
+        app:layout_constraintTop_toBottomOf="@id/addQuestionSetTextView"
+        android:inputType="text" />
 
     <Button
-        android:id="@+id/add_element_submit_button"
+        android:id="@+id/addQuestionSetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="@string/submit"
         android:textColor="@color/new_on_primary"
-        app:layout_constraintTop_toBottomOf="@id/add_element_edittext"
+        app:layout_constraintTop_toBottomOf="@id/addQuestionSetEditText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 

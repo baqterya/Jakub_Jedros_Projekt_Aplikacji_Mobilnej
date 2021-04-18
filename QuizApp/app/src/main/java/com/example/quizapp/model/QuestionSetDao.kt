@@ -1,5 +1,6 @@
 package com.example.quizapp.model
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.quizapp.model.relations.QuestionSetWithCategories
 import kotlinx.coroutines.flow.Flow
@@ -10,15 +11,14 @@ interface QuestionSetDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertQuestionSet(questionSet: QuestionSet)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertCategory(category: Category)
+    @Update
+    suspend fun editQuestionSet(questionSet: QuestionSet)
 
-    @Transaction
-    @Query("SELECT * FROM question_set_table")
-    fun getQuestionSetsAndCategories(): List<QuestionSetWithCategories>
+    @Delete
+    suspend fun deleteQuestionSet(questionSet: QuestionSet)
 
     @Query("SELECT * FROM question_set_table ORDER BY questionSetName ASC")
-    fun getAllQuestionSets(): Flow<List<QuestionSet>>
+    fun getAllQuestionSets(): LiveData<List<QuestionSet>>
 
     @Query("DELETE FROM question_set_table")
     suspend fun deleteAllQuestionSets()

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/listQuestionSetFragment">
+    <fragment
+        android:id="@+id/listQuestionSetFragment"
+        android:name="com.example.quizapp.view.fragment.ListQuestionSetFragment"
+        android:label="Question Sets"
+        tools:layout="@layout/fragment_list_question_set" >
+        <action
+            android:id="@+id/action_listQuestionSetFragment_to_addQuestionSetFragment"
+            app:destination="@id/addQuestionSetFragment" />
+        <action
+            android:id="@+id/action_listQuestionSetFragment_to_editQuestionSetFragment"
+            app:destination="@id/editQuestionSetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuestionSetFragment"
+        android:name="com.example.quizapp.view.fragment.AddQuestionSetFragment"
+        android:label="Add Question Set"
+        tools:layout="@layout/fragment_add_question_set" >
+        <action
+            android:id="@+id/action_addQuestionSetFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editQuestionSetFragment"
+        android:name="com.example.quizapp.view.fragment.EditQuestionSetFragment"
+        android:label="Edit Question Set"
+        tools:layout="@layout/fragment_edit_question_set" >
+        <action
+            android:id="@+id/action_editQuestionSetFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
+        <argument
+            android:name="currentQuestionSet"
+            app:argType="com.example.quizapp.model.QuestionSet" />
+    </fragment>
+</navigation>

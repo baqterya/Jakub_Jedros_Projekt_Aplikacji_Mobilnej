@@ -4,47 +4,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.R
 import com.example.quizapp.model.QuestionSet
+import com.example.quizapp.view.fragment.ListQuestionSetFragmentDirections
 
-class ListQuestionSetAdapter : ListAdapter<QuestionSet, ListQuestionSetAdapter.QuestionSetViewHolder>(QuestionSetComparator()) {
+class ListQuestionSetAdapter : RecyclerView.Adapter<ListQuestionSetAdapter.QuestionSetViewHolder>() {
+
+    private var questionSetList = emptyList<QuestionSet>()
+
+    class QuestionSetViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionSetViewHolder {
-        return QuestionSetViewHolder.create(parent)
+        return QuestionSetViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_question_set, parent, false))
     }
 
     override fun onBindViewHolder(holder: QuestionSetViewHolder, position: Int) {
-        val current = getItem(position)
-        holder.bind(current.questionSetName)
-    }
-
-    class  QuestionSetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val questionSetItemView: TextView = itemView.findViewById(R.id.question_set_item_textview)
-
-        fun bind(text: String) {
-            questionSetItemView.text = text
-        }
-
-        companion object {
-            fun create(parent: ViewGroup): QuestionSetViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.recyclerview_question_set, parent, false)
-                return QuestionSetViewHolder(view)
-            }
+        val currentItem = questionSetList[position]
+        holder.itemView.findViewById<TextView>(R.id.questionSetItemTextView).text = currentItem.questionSetName
+        // TODO change to onLongPressListener later
+        holder.itemView.findViewById<CardView>(R.id.questionSetItemCardView).setOnClickListener {
+            val action = ListQuestionSetFragmentDirections.actionListQuestionSetFragmentToEditQuestionSetFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
         }
     }
 
-    class QuestionSetComparator : DiffUtil.ItemCallback<QuestionSet>() {
-        override fun areItemsTheSame(oldItem: QuestionSet, newItem: QuestionSet): Boolean {
-            return oldItem === newItem
-        }
+    override fun getItemCount(): Int {
+        return questionSetList.size
+    }
 
-        override fun areContentsTheSame(oldItem: QuestionSet, newItem: QuestionSet): Boolean {
-            return oldItem.questionSetId == newItem.questionSetId
-                    && oldItem.questionSetName == newItem.questionSetName
-        }
+    fun setData(questionSets: List<QuestionSet>) {
+        this.questionSetList = questionSets
     }
 }

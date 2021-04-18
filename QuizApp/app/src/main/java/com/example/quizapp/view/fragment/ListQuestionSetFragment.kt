@@ -1,72 +1,76 @@
 package com.example.quizapp.view.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.quizapp.QuestionSetApplication
 import com.example.quizapp.R
-import com.example.quizapp.databinding.ActivityMainBinding
-import com.example.quizapp.databinding.FragmentListQuestionSetsBinding
-import com.example.quizapp.model.QuestionSet
-import com.example.quizapp.view.activity.MainActivity
+import com.example.quizapp.databinding.FragmentListQuestionSetBinding
 import com.example.quizapp.view.adapter.ListQuestionSetAdapter
 import com.example.quizapp.viewmodel.QuestionSetViewModel
-import com.example.quizapp.viewmodel.QuestionSetViewModelFactory
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListQuestionSetFragment : Fragment() {
+    private lateinit var binding: FragmentListQuestionSetBinding
 
-    lateinit var binding: FragmentListQuestionSetsBinding
+    private lateinit var mQuestionSetViewModel: QuestionSetViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentListQuestionSetBinding.inflate(inflater, container, false)
 
-    }
+        // TODO recycler view nie update'uje sie wtedy kiedy powinien
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_list_question_sets, container, false)
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentListQuestionSetsBinding.bind(view)
-        val recyclerview = binding.questionSetRecyclerview
+        // Recycler View
+        val recyclerView = binding.questionSetRecyclerView
         val adapter = ListQuestionSetAdapter()
-        recyclerview.adapter = adapter
-        recyclerview.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        setFragmentResultListener(ADD_QUESTION_SET) {_, result ->
-            val name = result.getString(QUESTION_SET_NAME)
-            if (!name.isNullOrEmpty()) {
-                val questionSet = QuestionSet(0, name)
-                (activity as MainActivity).questionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, Observer {
-                        questionSets -> questionSets.let { adapter.submitList(it) }
-                })
-            }
+        // QuestionSetViewModel
+        mQuestionSetViewModel = ViewModelProvider(this).get(QuestionSetViewModel::class.java)
+        mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, Observer { questionSet ->
+            adapter.setData(questionSet)
+        })
+
+        binding.addQuestionSetFAB.setOnClickListener {
+            findNavController().navigate(R.id.action_listQuestionSetFragment_to_addQuestionSetFragment)
         }
 
-        binding.fabAddQuestionSet.setOnClickListener {
-            val fragment = AddElementFragment()
-            (activity as MainActivity).changeFragment(fragment)
-        }
+        // Thread.sleep(500)
+        setHasOptionsMenu(true)
+
+        return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menuDelete) {
+            deleteAll()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
-
-    companion object {
-        const val ADD_QUESTION_SET = "add_question_set"
-        const val QUESTION_SET_NAME = "question_set_name"
+    private fun deleteAll() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") {_, _ ->
+            mQuestionSetViewModel.deleteAllQuestionSets()
+            Toast.makeText(requireContext(), "All sets successfully removed", Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("No") {_, _ -> }
+        builder.setTitle("Delete ALL sets?")
+        builder.setMessage("Are you sure you want to delete ALL?")
+        builder.create().show()
     }
 
 }

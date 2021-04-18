@@ -1,26 +1,46 @@
 package com.example.quizapp.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.*
+import com.example.quizapp.database.QuestionSetDatabase
 import com.example.quizapp.model.QuestionSet
-import com.example.quizapp.repository.Repository
+import com.example.quizapp.model.QuestionSetDao
+import com.example.quizapp.repository.QuestionSetRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
-class QuestionSetViewModel(private val repository: Repository) : ViewModel() {
-    val allQuestionSets: LiveData<List<QuestionSet>> =  repository.allQuestionSets.asLiveData()
+class QuestionSetViewModel(application: Application) : AndroidViewModel(application) {
+    val allQuestionSets: LiveData<List<QuestionSet>>
+    private val repository: QuestionSetRepository
 
-    fun insert(questionSet: QuestionSet) = viewModelScope.launch {
-        repository.insertQuestionSet(questionSet)
+    init {
+        val questionSetDao = QuestionSetDatabase.getDatabase(application).questionSetDao()
+        repository = QuestionSetRepository(questionSetDao)
+        allQuestionSets = repository.allQuestionSets
     }
-}
 
-class QuestionSetViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(QuestionSetViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return QuestionSetViewModel(repository) as T
+    fun insertQuestionSet(questionSet: QuestionSet) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertQuestionSet(questionSet)
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 
+    fun editQuestionSet(questionSet: QuestionSet) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.editQuestionSet(questionSet)
+        }
+    }
+
+    fun deleteQuestionSet(questionSet: QuestionSet) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteQuestionSet(questionSet)
+        }
+    }
+
+    fun deleteAllQuestionSets() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllQuestionSets()
+        }
+    }
 }

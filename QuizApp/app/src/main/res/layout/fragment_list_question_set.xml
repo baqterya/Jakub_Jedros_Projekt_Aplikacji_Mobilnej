@@ -4,26 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.ListQuestionSetFragment"
-    android:paddingTop="15dp">
+    tools:context=".view.fragment.ListQuestionSetFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/question_set_recyclerview"
+        android:id="@+id/questionSetRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         tools:listitem="@layout/recyclerview_question_set"
-        android:padding="5dp"
-        />
+        android:paddingTop="10dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_question_set"
+        android:id="@+id/addQuestionSetFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="15dp"
-        android:contentDescription="@string/fab_add"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_add"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/fab_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

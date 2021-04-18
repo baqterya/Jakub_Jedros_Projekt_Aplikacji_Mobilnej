@@ -14,5 +14,10 @@
     <string name="fab_add">ADD</string>
     <string name="new_question_set_name">NEW QUESTION SET NAME</string>
     <string name="create_new_question_set">CREATE NEW QUESTION SET</string>
-    <string name="submit">SUBMIT</string>
+    <string name="submit">ADD</string>
+    <string name="edit_question_set">EDIT QUESTION SET</string>
+    <string name="edit">SAVE</string>
+    <string name="edit_name">EDIT NAME</string>
+    <string name="name">NAME</string>
+    <string name="delete">Delete</string>
 </resources>
