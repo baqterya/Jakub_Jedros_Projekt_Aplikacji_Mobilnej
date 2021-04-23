@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_listQuestionSetFragment_to_editQuestionSetFragment"
             app:destination="@id/editQuestionSetFragment" />
+        <action
+            android:id="@+id/action_listQuestionSetFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/addQuestionSetFragment"
@@ -36,5 +39,17 @@
         <argument
             android:name="currentQuestionSet"
             app:argType="com.example.quizapp.model.QuestionSet" />
+    </fragment>
+    <fragment
+        android:id="@+id/listCategoryFragment"
+        android:name="com.example.quizapp.view.fragment.ListCategoryFragment"
+        android:label="Categories"
+        tools:layout="@layout/fragment_list_category" >
+        <action
+            android:id="@+id/action_listCategoryFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
+        <argument
+            android:name="questionSetId"
+            app:argType="integer" />
     </fragment>
 </navigation>

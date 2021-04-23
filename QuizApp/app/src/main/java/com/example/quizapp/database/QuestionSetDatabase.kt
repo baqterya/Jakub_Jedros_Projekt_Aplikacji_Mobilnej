@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.quizapp.model.Category
+import com.example.quizapp.model.CategoryDao
 import com.example.quizapp.model.QuestionSet
 import com.example.quizapp.model.QuestionSetDao
 import kotlinx.coroutines.CoroutineScope
@@ -14,13 +15,14 @@ import kotlinx.coroutines.launch
 @Database(
     entities = [
         QuestionSet::class,
-        // Category::class
+        Category::class
     ],
     version = 1,
     exportSchema = false
 )
 abstract class QuestionSetDatabase : RoomDatabase() {
     abstract fun questionSetDao(): QuestionSetDao
+    abstract fun categoryDao(): CategoryDao
 
     companion object {
         @Volatile

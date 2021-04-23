@@ -3,6 +3,7 @@ package com.example.quizapp.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
@@ -28,9 +29,14 @@ class ListQuestionSetAdapter : RecyclerView.Adapter<ListQuestionSetAdapter.Quest
     override fun onBindViewHolder(holder: QuestionSetViewHolder, position: Int) {
         val currentItem = questionSetList[position]
         holder.itemView.findViewById<TextView>(R.id.questionSetItemTextView).text = currentItem.questionSetName
-        // TODO change to onLongPressListener later
-        holder.itemView.findViewById<CardView>(R.id.questionSetItemCardView).setOnClickListener {
+
+        holder.itemView.findViewById<ImageButton>(R.id.editQuestionSetStartButton).setOnClickListener {
             val action = ListQuestionSetFragmentDirections.actionListQuestionSetFragmentToEditQuestionSetFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
+
+        holder.itemView.findViewById<CardView>(R.id.questionSetItemCardView).setOnClickListener {
+            val action = ListQuestionSetFragmentDirections.actionListQuestionSetFragmentToListCategoryFragment(currentItem.questionSetId)
             holder.itemView.findNavController().navigate(action)
         }
     }

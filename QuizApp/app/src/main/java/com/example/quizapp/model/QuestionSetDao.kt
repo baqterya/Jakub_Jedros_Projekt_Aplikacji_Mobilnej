@@ -22,4 +22,8 @@ interface QuestionSetDao {
 
     @Query("DELETE FROM question_set_table")
     suspend fun deleteAllQuestionSets()
+/*
+    @Transaction
+    @Query("SELECT * FROM question_set_table")
+    fun getQuestionSetsWithCategories(): List<QuestionSetWithCategories>*/
 }

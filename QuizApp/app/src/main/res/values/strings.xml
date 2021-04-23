@@ -11,6 +11,7 @@
     <string name="open">Open navigation drawer</string>
     <string name="close">Close navigation drawer</string>
     <string name="category_name_dummy">CATEGORY NAME</string>
+    <string name="question_set_name_dummy">QUESTION SET NAME</string>
     <string name="fab_add">ADD</string>
     <string name="new_question_set_name">NEW QUESTION SET NAME</string>
     <string name="create_new_question_set">CREATE NEW QUESTION SET</string>
