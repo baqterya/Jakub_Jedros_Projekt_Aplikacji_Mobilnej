@@ -23,8 +23,11 @@ class CategoryRepository(private val categoryDao: CategoryDao) {
     fun getAllCategoriesFromQuestionSet(questionSetId: Int)
     = categoryDao.getAllCategoriesFromQuestionSet(questionSetId)
 
-
     suspend fun deleteAllCategoriesFromQuestionSet(questionSetId: Int) {
         categoryDao.deleteAllCategoriesFromQuestionSet(questionSetId)
+    }
+
+    suspend fun deleteAllCategories() {
+        categoryDao.deleteAllCategories()
     }
 }

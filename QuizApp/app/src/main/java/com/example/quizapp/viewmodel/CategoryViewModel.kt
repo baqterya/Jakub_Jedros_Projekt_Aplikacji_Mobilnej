@@ -11,13 +11,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CategoryViewModel(application: Application) : AndroidViewModel(application) {
-    val allCategories: LiveData<List<Category>>
     private val repository: CategoryRepository
 
     init {
         val categoryDao = QuestionSetDatabase.getDatabase(application).categoryDao()
         repository = CategoryRepository(categoryDao)
-        allCategories = repository.allCategories
     }
 
     fun insertCategory(category: Category) {
@@ -40,15 +38,17 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
 
     fun getAllCategoriesFromQuestionSet(questionSetId: Int): LiveData<List<Category>> {
         return repository.getAllCategoriesFromQuestionSet(questionSetId)
-
-        /*viewModelScope.launch(Dispatchers.IO) {
-            repository.getAllCategoriesFromQuestionSet(questionSetId)
-        }*/
     }
 
     fun deleteAllCategoriesFromQuestionSet(questionSetId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllCategoriesFromQuestionSet(questionSetId)
+        }
+    }
+
+    fun deleteAllCategories() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllCategories()
         }
     }
 }

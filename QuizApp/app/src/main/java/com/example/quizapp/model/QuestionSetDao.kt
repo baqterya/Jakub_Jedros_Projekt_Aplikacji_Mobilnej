@@ -2,8 +2,6 @@ package com.example.quizapp.model
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.quizapp.model.relations.QuestionSetWithCategories
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface QuestionSetDao {
@@ -22,8 +20,4 @@ interface QuestionSetDao {
 
     @Query("DELETE FROM question_set_table")
     suspend fun deleteAllQuestionSets()
-/*
-    @Transaction
-    @Query("SELECT * FROM question_set_table")
-    fun getQuestionSetsWithCategories(): List<QuestionSetWithCategories>*/
 }

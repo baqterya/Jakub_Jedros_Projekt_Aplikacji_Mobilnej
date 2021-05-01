@@ -13,6 +13,7 @@ import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentEditQuestionSetBinding
 import com.example.quizapp.model.QuestionSet
 import com.example.quizapp.viewmodel.CategoryViewModel
+import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 import com.example.quizapp.viewmodel.QuestionSetViewModel
 
 
@@ -20,6 +21,7 @@ class EditQuestionSetFragment : Fragment() {
     private lateinit var binding: FragmentEditQuestionSetBinding
     private lateinit var mQuestionSetViewModel: QuestionSetViewModel
     private lateinit var mCategoryViewModel: CategoryViewModel
+    private lateinit var mQuestionAndAnswerViewModel: QuestionAndAnswerViewModel
 
     private val args by navArgs<EditQuestionSetFragmentArgs>()
 
@@ -30,6 +32,7 @@ class EditQuestionSetFragment : Fragment() {
         binding = FragmentEditQuestionSetBinding.inflate(inflater, container, false)
         mQuestionSetViewModel = ViewModelProvider(this).get(QuestionSetViewModel::class.java)
         mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
 
         binding.editQuestionSetEditText.setText(args.currentQuestionSet.questionSetName)
 
@@ -59,6 +62,7 @@ class EditQuestionSetFragment : Fragment() {
         builder.setPositiveButton("Yes") {_, _ ->
             mQuestionSetViewModel.deleteQuestionSet(args.currentQuestionSet)
             mCategoryViewModel.deleteAllCategoriesFromQuestionSet(args.currentQuestionSet.questionSetId)
+            mQuestionAndAnswerViewModel.deleteQuestionsAndAnswersFromQuestionSet(args.currentQuestionSet.questionSetId)
             Toast.makeText(requireContext(), "Successfully removed ${args.currentQuestionSet.questionSetName}", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_editQuestionSetFragment_to_listQuestionSetFragment)
         }

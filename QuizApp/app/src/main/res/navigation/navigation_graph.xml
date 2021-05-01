@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_listCategoryFragment_to_addCategoryFragment"
             app:destination="@id/addCategoryFragment" />
+        <action
+            android:id="@+id/action_listCategoryFragment_to_listQuestionAndAnswerFragment"
+            app:destination="@id/listQuestionAndAnswerFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCategoryFragment"
@@ -81,5 +84,47 @@
         <argument
             android:name="currentCategory"
             app:argType="com.example.quizapp.model.Category" />
+    </fragment>
+    <fragment
+        android:id="@+id/listQuestionAndAnswerFragment"
+        android:name="com.example.quizapp.view.fragment.ListQuestionAndAnswerFragment"
+        android:label="fragment_list_question_and_answer"
+        tools:layout="@layout/fragment_list_question_and_answer" >
+        <action
+            android:id="@+id/action_listQuestionAndAnswerFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment" />
+        <action
+            android:id="@+id/action_listQuestionAndAnswerFragment_to_addQuestionAndAnswerFragment"
+            app:destination="@id/addQuestionAndAnswerFragment" />
+        <action
+            android:id="@+id/action_listQuestionAndAnswerFragment_to_editQuestionAndAnswerFragment"
+            app:destination="@id/editQuestionAndAnswerFragment" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuestionAndAnswerFragment"
+        android:name="com.example.quizapp.view.fragment.AddQuestionAndAnswerFragment"
+        android:label="fragment_add_question_and_answer"
+        tools:layout="@layout/fragment_add_question_and_answer" >
+        <action
+            android:id="@+id/action_addQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
+            app:destination="@id/listQuestionAndAnswerFragment" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/editQuestionAndAnswerFragment"
+        android:name="com.example.quizapp.view.fragment.EditQuestionAndAnswerFragment"
+        android:label="fragment_edit_question_and_answer"
+        tools:layout="@layout/fragment_edit_question_and_answer" >
+        <action
+            android:id="@+id/action_editQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
+            app:destination="@id/listQuestionAndAnswerFragment" />
+        <argument
+            android:name="currentQuestionAndAnswer"
+            app:argType="com.example.quizapp.model.relations.QuestionAndAnswer" />
     </fragment>
 </navigation>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.R
@@ -24,8 +25,8 @@ class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.CategoryVie
         return CategoryViewHolder(LayoutInflater.from(parent.context).inflate(
             R.layout.recyclerview_category,
             parent,
-            false)
-        )
+            false
+        ))
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
@@ -34,6 +35,15 @@ class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.CategoryVie
 
         holder.itemView.findViewById<ImageButton>(R.id.editCategoryStartButton).setOnClickListener {
             val action = ListCategoryFragmentDirections.actionListCategoryFragmentToEditCategoryFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
+
+        /**
+         * TODO I HAVE TO RECONSTRUCT UI
+         * I COULD JUST MODEL IT LIKE |EDIT [CATEGORY NAME] PLAY|
+          */
+        holder.itemView.findViewById<CardView>(R.id.categoryItemCardView).setOnClickListener {
+            val action = ListCategoryFragmentDirections.actionListCategoryFragmentToListQuestionAndAnswerFragment(currentItem.categoryId)
             holder.itemView.findNavController().navigate(action)
         }
     }

@@ -5,45 +5,41 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizapp.R
-import com.example.quizapp.databinding.FragmentListCategoryBinding
-import com.example.quizapp.view.adapter.ListCategoryAdapter
+import com.example.quizapp.databinding.FragmentListQuestionAndAnswerBinding
+import com.example.quizapp.view.adapter.ListQuestionAndAnswerAdapter
 import com.example.quizapp.viewmodel.CategoryViewModel
 import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 
-class ListCategoryFragment : Fragment() {
-    private lateinit var binding: FragmentListCategoryBinding
-    private lateinit var mCategoryViewModel: CategoryViewModel
+class ListQuestionAndAnswerFragment : Fragment() {
+    private lateinit var binding: FragmentListQuestionAndAnswerBinding
     private lateinit var mQuestionAndAnswerViewModel: QuestionAndAnswerViewModel
 
-    private val args by navArgs<ListCategoryFragmentArgs>()
+    private val args by navArgs<ListQuestionAndAnswerFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentListCategoryBinding.inflate(inflater, container, false)
+        savedInstanceState: Bundle?): View {
 
-        val recyclerView = binding.categoryRecyclerView
-        val adapter = ListCategoryAdapter()
+        binding = FragmentListQuestionAndAnswerBinding.inflate(inflater, container, false)
+
+        val recyclerView = binding.questionAndAnswerRecyclerView
+        val adapter = ListQuestionAndAnswerAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
         mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
-
-        mCategoryViewModel.getAllCategoriesFromQuestionSet(args.questionSetId).observe(viewLifecycleOwner, Observer { categories ->
-            adapter.setData(categories)
+        mQuestionAndAnswerViewModel.getAllQuestionsAndAnswersFromCategory(args.categoryId).observe(viewLifecycleOwner, { questionsAndAnswers ->
+            adapter.setData(questionsAndAnswers)
         })
 
-        binding.addCategoryFAB.setOnClickListener {
-            val action = ListCategoryFragmentDirections.actionListCategoryFragmentToAddCategoryFragment(args.questionSetId)
+        binding.addQuestionAndAnswerFAB.setOnClickListener {
+            val action = ListQuestionAndAnswerFragmentDirections.actionListQuestionAndAnswerFragmentToAddQuestionAndAnswerFragment(args.categoryId)
             findNavController().navigate(action)
         }
 
@@ -57,7 +53,7 @@ class ListCategoryFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menuDelete) {
+        if(item.itemId == R.id.menuDelete) {
             deleteAll()
         }
         return super.onOptionsItemSelected(item)
@@ -66,13 +62,11 @@ class ListCategoryFragment : Fragment() {
     private fun deleteAll() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") {_, _ ->
-            mCategoryViewModel.deleteAllCategoriesFromQuestionSet(args.questionSetId)
-            mQuestionAndAnswerViewModel.deleteQuestionsAndAnswersFromQuestionSet(args.questionSetId)
-
-            Toast.makeText(requireContext(), "All categories successfully removed", Toast.LENGTH_SHORT).show()
+            mQuestionAndAnswerViewModel.deleteQuestionsAndAnswersFromCategory(args.categoryId)
+            Toast.makeText(requireContext(), "All questions successfully removed", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No") {_, _ -> }
-        builder.setTitle("Delete ALL categories?")
+        builder.setTitle("Delete ALL questions?")
         builder.setMessage("Are you sure you want to delete ALL?")
         builder.create().show()
     }

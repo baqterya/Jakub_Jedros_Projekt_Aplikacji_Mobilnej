@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentListQuestionSetBinding
 import com.example.quizapp.view.adapter.ListQuestionSetAdapter
+import com.example.quizapp.viewmodel.CategoryViewModel
+import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 import com.example.quizapp.viewmodel.QuestionSetViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -19,6 +21,8 @@ class ListQuestionSetFragment : Fragment() {
     private lateinit var binding: FragmentListQuestionSetBinding
 
     private lateinit var mQuestionSetViewModel: QuestionSetViewModel
+    private lateinit var mCategoryViewModel: CategoryViewModel
+    private lateinit var mQuestionAndAnswerViewModel: QuestionAndAnswerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +40,9 @@ class ListQuestionSetFragment : Fragment() {
 
         // QuestionSetViewModel
         mQuestionSetViewModel = ViewModelProvider(this).get(QuestionSetViewModel::class.java)
+        mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
+
         mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, Observer { questionSet ->
             adapter.setData(questionSet)
         })
@@ -65,6 +72,8 @@ class ListQuestionSetFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") {_, _ ->
             mQuestionSetViewModel.deleteAllQuestionSets()
+            mCategoryViewModel.deleteAllCategories()
+            mQuestionAndAnswerViewModel.deleteAllQuestionsAndAnswers()
             Toast.makeText(requireContext(), "All sets successfully removed", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No") {_, _ -> }

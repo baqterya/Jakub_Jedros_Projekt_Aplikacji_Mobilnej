@@ -6,12 +6,13 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "question_table")
-data class Question(
+@Entity(tableName = "answer_table")
+data class Answer(
         @PrimaryKey(autoGenerate = true)
-        val questionId: Int,
+        val answerId: Int,
 
-        val questionText: String,
+        val answerText: String,
+        val parentQuestionId: Int,
 
         val parentCategoryId: Int,
         val parentQuestionSetId: Int

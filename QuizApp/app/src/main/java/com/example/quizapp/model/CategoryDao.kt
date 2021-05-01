@@ -2,7 +2,6 @@ package com.example.quizapp.model
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.quizapp.model.relations.QuestionSetWithCategories
 
 @Dao
 interface CategoryDao {
@@ -24,4 +23,7 @@ interface CategoryDao {
 
     @Query("DELETE FROM category_table WHERE parentSetId = :questionSetId")
     suspend fun deleteAllCategoriesFromQuestionSet(questionSetId: Int)
+
+    @Query("DELETE FROM category_table")
+    suspend fun deleteAllCategories()
 }

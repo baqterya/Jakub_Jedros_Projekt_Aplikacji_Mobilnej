@@ -13,11 +13,13 @@ import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentEditCategoryBinding
 import com.example.quizapp.model.Category
 import com.example.quizapp.viewmodel.CategoryViewModel
+import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 
 
 class EditCategoryFragment : Fragment() {
     private lateinit var binding: FragmentEditCategoryBinding
     private lateinit var mCategoryViewModel: CategoryViewModel
+    private lateinit var mQuestionAndAnswerViewModel: QuestionAndAnswerViewModel
 
     private val args by navArgs<EditCategoryFragmentArgs>()
 
@@ -27,6 +29,7 @@ class EditCategoryFragment : Fragment() {
     ): View {
         binding = FragmentEditCategoryBinding.inflate(inflater, container, false)
         mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
 
         binding.editCategoryEditText.setText(args.currentCategory.categoryName)
 
@@ -67,6 +70,7 @@ class EditCategoryFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") {_, _ ->
             mCategoryViewModel.deleteCategory(args.currentCategory)
+            mQuestionAndAnswerViewModel.deleteQuestionsAndAnswersFromCategory(args.currentCategory.categoryId)
             Toast.makeText(requireContext(), "Successfully removed ${args.currentCategory.categoryName}", Toast.LENGTH_SHORT).show()
             val action = EditCategoryFragmentDirections.actionEditCategoryFragmentToListCategoryFragment(args.currentCategory.parentSetId)
             findNavController().navigate(action)

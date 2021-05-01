@@ -23,4 +23,6 @@
     <string name="delete">Delete</string>
     <string name="create_new_category">CREATE NEW CATEGORY</string>
     <string name="edit_category">EDIT CATEGORY</string>
+    <string name="question_name_dummy">QUESTION</string>
+    <string name="answer_name_dummy">ANSWER</string>
 </resources>
