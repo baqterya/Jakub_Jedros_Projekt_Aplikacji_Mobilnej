@@ -51,5 +51,35 @@
         <argument
             android:name="questionSetId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_listCategoryFragment_to_editCategoryFragment"
+            app:destination="@id/editCategoryFragment" />
+        <action
+            android:id="@+id/action_listCategoryFragment_to_addCategoryFragment"
+            app:destination="@id/addCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCategoryFragment"
+        android:name="com.example.quizapp.view.fragment.AddCategoryFragment"
+        android:label="fragment_add_category"
+        tools:layout="@layout/fragment_add_category" >
+        <argument
+            android:name="questionSetId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_addCategoryFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editCategoryFragment"
+        android:name="com.example.quizapp.view.fragment.EditCategoryFragment"
+        android:label="fragment_edit_category"
+        tools:layout="@layout/fragment_edit_category" >
+        <action
+            android:id="@+id/action_editCategoryFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment" />
+        <argument
+            android:name="currentCategory"
+            app:argType="com.example.quizapp.model.Category" />
     </fragment>
 </navigation>

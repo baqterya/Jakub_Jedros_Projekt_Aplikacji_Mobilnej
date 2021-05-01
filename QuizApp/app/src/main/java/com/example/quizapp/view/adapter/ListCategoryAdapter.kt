@@ -1,12 +1,17 @@
 package com.example.quizapp.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.R
 import com.example.quizapp.model.Category
+import com.example.quizapp.view.fragment.ListCategoryFragmentDirections
 
 class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.CategoryViewHolder>() {
     private var categoryList = emptyList<Category>()
@@ -26,6 +31,11 @@ class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.CategoryVie
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val currentItem = categoryList[position]
         holder.itemView.findViewById<TextView>(R.id.categoryItemTextView).text = currentItem.categoryName
+
+        holder.itemView.findViewById<ImageButton>(R.id.editCategoryStartButton).setOnClickListener {
+            val action = ListCategoryFragmentDirections.actionListCategoryFragmentToEditCategoryFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

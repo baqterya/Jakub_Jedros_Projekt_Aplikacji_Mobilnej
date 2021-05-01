@@ -21,4 +21,6 @@
     <string name="edit_name">EDIT NAME</string>
     <string name="name">NAME</string>
     <string name="delete">Delete</string>
+    <string name="create_new_category">CREATE NEW CATEGORY</string>
+    <string name="edit_category">EDIT CATEGORY</string>
 </resources>

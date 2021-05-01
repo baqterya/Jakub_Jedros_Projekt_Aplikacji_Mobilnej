@@ -12,12 +12,14 @@ import androidx.navigation.fragment.navArgs
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentEditQuestionSetBinding
 import com.example.quizapp.model.QuestionSet
+import com.example.quizapp.viewmodel.CategoryViewModel
 import com.example.quizapp.viewmodel.QuestionSetViewModel
 
 
 class EditQuestionSetFragment : Fragment() {
     private lateinit var binding: FragmentEditQuestionSetBinding
     private lateinit var mQuestionSetViewModel: QuestionSetViewModel
+    private lateinit var mCategoryViewModel: CategoryViewModel
 
     private val args by navArgs<EditQuestionSetFragmentArgs>()
 
@@ -27,6 +29,7 @@ class EditQuestionSetFragment : Fragment() {
     ): View {
         binding = FragmentEditQuestionSetBinding.inflate(inflater, container, false)
         mQuestionSetViewModel = ViewModelProvider(this).get(QuestionSetViewModel::class.java)
+        mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
 
         binding.editQuestionSetEditText.setText(args.currentQuestionSet.questionSetName)
 
@@ -55,12 +58,13 @@ class EditQuestionSetFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") {_, _ ->
             mQuestionSetViewModel.deleteQuestionSet(args.currentQuestionSet)
+            mCategoryViewModel.deleteAllCategoriesFromQuestionSet(args.currentQuestionSet.questionSetId)
             Toast.makeText(requireContext(), "Successfully removed ${args.currentQuestionSet.questionSetName}", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_editQuestionSetFragment_to_listQuestionSetFragment)
         }
         builder.setNegativeButton("No") {_, _ -> }
         builder.setTitle("Delete ${args.currentQuestionSet.questionSetName}?")
-        builder.setMessage("Are you sure you want to delete?")
+        builder.setMessage("Are you sure you want to delete the set and all it's content?")
         builder.create().show()
     }
 

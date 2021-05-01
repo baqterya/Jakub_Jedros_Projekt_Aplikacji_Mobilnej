@@ -38,10 +38,12 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun getAllCategoriesFromQuestionSet(questionSetId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+    fun getAllCategoriesFromQuestionSet(questionSetId: Int): LiveData<List<Category>> {
+        return repository.getAllCategoriesFromQuestionSet(questionSetId)
+
+        /*viewModelScope.launch(Dispatchers.IO) {
             repository.getAllCategoriesFromQuestionSet(questionSetId)
-        }
+        }*/
     }
 
     fun deleteAllCategoriesFromQuestionSet(questionSetId: Int) {
