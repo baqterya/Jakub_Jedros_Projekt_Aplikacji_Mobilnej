@@ -12,7 +12,7 @@ data class Answer(
         val answerId: Int,
 
         val answerText: String,
-        val parentQuestionId: Int,
+        val parentQuestionText: String,
 
         val parentCategoryId: Int,
         val parentQuestionSetId: Int

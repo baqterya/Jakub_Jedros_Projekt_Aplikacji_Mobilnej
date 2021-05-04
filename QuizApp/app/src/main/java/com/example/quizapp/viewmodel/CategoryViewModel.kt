@@ -36,6 +36,10 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun getAllCategories(): LiveData<List<Category>> {
+        return repository.allCategories
+    }
+
     fun getAllCategoriesFromQuestionSet(questionSetId: Int): LiveData<List<Category>> {
         return repository.getAllCategoriesFromQuestionSet(questionSetId)
     }

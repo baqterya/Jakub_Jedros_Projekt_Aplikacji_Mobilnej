@@ -25,4 +25,7 @@
     <string name="edit_category">EDIT CATEGORY</string>
     <string name="question_name_dummy">QUESTION</string>
     <string name="answer_name_dummy">ANSWER</string>
+    <string name="create_new_question">CREATE NEW QUESTION</string>
+    <string name="question_name">QUESTION</string>
+    <string name="answer_name">ANSWER</string>
 </resources>

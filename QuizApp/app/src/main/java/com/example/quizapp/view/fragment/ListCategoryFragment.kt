@@ -30,17 +30,22 @@ class ListCategoryFragment : Fragment() {
     ): View {
         binding = FragmentListCategoryBinding.inflate(inflater, container, false)
 
-        val recyclerView = binding.categoryRecyclerView
-        val adapter = ListCategoryAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
         mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
 
-        mCategoryViewModel.getAllCategoriesFromQuestionSet(args.questionSetId).observe(viewLifecycleOwner, Observer { categories ->
-            adapter.setData(categories)
+        val recyclerView = binding.categoryRecyclerView
+        val adapter = ListCategoryAdapter(mCategoryViewModel.getAllCategoriesFromQuestionSet(args.questionSetId))
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // TODO IT'S ALMOST WORKING, I HAVE TO TRY PASSING ARGS VIA VIEW MODEL
+        mCategoryViewModel.getAllCategoriesFromQuestionSet(args.questionSetId).observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
         })
+
+//        mCategoryViewModel.getAllCategories().observe(viewLifecycleOwner, Observer {
+//            adapter.notifyDataSetChanged()
+//        })
 
         binding.addCategoryFAB.setOnClickListener {
             val action = ListCategoryFragmentDirections.actionListCategoryFragmentToAddCategoryFragment(args.questionSetId)

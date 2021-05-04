@@ -13,8 +13,8 @@ data class QuestionAndAnswer(
         val question: Question,
 
         @Relation(
-                parentColumn = "questionId",
-                entityColumn = "parentQuestionId"
+                parentColumn = "questionText",
+                entityColumn = "parentQuestionText"
         )
         val answer: Answer
 ): Parcelable

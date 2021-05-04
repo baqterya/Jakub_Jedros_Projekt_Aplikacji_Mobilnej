@@ -102,6 +102,9 @@
         <argument
             android:name="categoryId"
             app:argType="integer" />
+        <argument
+            android:name="questionSetId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/addQuestionAndAnswerFragment"
@@ -113,6 +116,9 @@
             app:destination="@id/listQuestionAndAnswerFragment" />
         <argument
             android:name="categoryId"
+            app:argType="integer" />
+        <argument
+            android:name="questionSetId"
             app:argType="integer" />
     </fragment>
     <fragment

@@ -31,27 +31,26 @@ class ListQuestionSetFragment : Fragment() {
         binding = FragmentListQuestionSetBinding.inflate(inflater, container, false)
 
         // TODO recycler view nie update'uje sie wtedy kiedy powinien
-
-        // Recycler View
-        val recyclerView = binding.questionSetRecyclerView
-        val adapter = ListQuestionSetAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         // QuestionSetViewModel
         mQuestionSetViewModel = ViewModelProvider(this).get(QuestionSetViewModel::class.java)
         mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
         mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
 
-        mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, Observer { questionSet ->
-            adapter.setData(questionSet)
+        // Recycler View
+        val recyclerView = binding.questionSetRecyclerView
+        val adapter = ListQuestionSetAdapter(mQuestionSetViewModel.allQuestionSets)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
         })
 
         binding.addQuestionSetFAB.setOnClickListener {
             findNavController().navigate(R.id.action_listQuestionSetFragment_to_addQuestionSetFragment)
         }
 
-        // Thread.sleep(500)
         setHasOptionsMenu(true)
 
         return binding.root
