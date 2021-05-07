@@ -6,7 +6,6 @@ import com.example.quizapp.model.Category
 import com.example.quizapp.model.CategoryDao
 
 class CategoryRepository(private val categoryDao: CategoryDao) {
-    val allCategories: LiveData<List<Category>> = categoryDao.getAllCategories()
 
     suspend fun insertCategory(category: Category) {
         categoryDao.insertCategory(category)
@@ -22,6 +21,9 @@ class CategoryRepository(private val categoryDao: CategoryDao) {
 
     fun getAllCategoriesFromQuestionSet(questionSetId: Int)
     = categoryDao.getAllCategoriesFromQuestionSet(questionSetId)
+
+    fun allCategories() : LiveData<List<Category>>
+    = categoryDao.getAllCategories()
 
     suspend fun deleteAllCategoriesFromQuestionSet(questionSetId: Int) {
         categoryDao.deleteAllCategoriesFromQuestionSet(questionSetId)

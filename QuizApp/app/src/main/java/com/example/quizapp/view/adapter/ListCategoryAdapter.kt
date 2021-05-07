@@ -1,15 +1,11 @@
 package com.example.quizapp.view.adapter
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -17,15 +13,9 @@ import com.example.quizapp.R
 import com.example.quizapp.model.Category
 import com.example.quizapp.view.fragment.ListCategoryFragmentDirections
 
-class ListCategoryAdapter(var data: LiveData<List<Category>>): RecyclerView.Adapter<ListCategoryAdapter.Holder>() {
-    lateinit var context: Context
+class ListCategoryAdapter(private var data: LiveData<List<Category>>): RecyclerView.Adapter<ListCategoryAdapter.Holder>() {
 
-    class Holder(view: View, data: LiveData<List<Category>>): RecyclerView.ViewHolder(view) {
-        init {
-            //
-        }
-
-    }
+    class Holder(view: View, data: LiveData<List<Category>>): RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -33,7 +23,7 @@ class ListCategoryAdapter(var data: LiveData<List<Category>>): RecyclerView.Adap
                 parent,
                 false
         ) as View
-        Toast.makeText(context, data.value?.get(0)?.categoryName.toString(), Toast.LENGTH_SHORT).show()
+
         return Holder(view, data)
     }
 
@@ -88,7 +78,7 @@ class ListCategoryAdapter(var data: LiveData<List<Category>>): RecyclerView.Adap
 //        }
 //
 //        holder.itemView.findViewById<CardView>(R.id.categoryItemCardView).setOnClickListener {
-//            val action = ListCategoryFragmentDirections.actionListCategoryFragmentToListQuestionAndAnswerFragment(currentItem.categoryId, currentItem.parentSetId)
+//            val action = ListCategoryFragmentDirections.actionListCategoryFragmentToListQuestionAndAnswerFragment(currentItem.categoryId)
 //            holder.itemView.findNavController().navigate(action)
 //        }
 //    }

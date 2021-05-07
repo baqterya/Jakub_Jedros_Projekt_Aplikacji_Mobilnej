@@ -1,6 +1,7 @@
 package com.example.quizapp.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -12,10 +13,15 @@ import kotlinx.coroutines.launch
 
 class CategoryViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: CategoryRepository
+    lateinit var categoriesFromQuestionSet: LiveData<List<Category>>
 
     init {
         val categoryDao = QuestionSetDatabase.getDatabase(application).categoryDao()
         repository = CategoryRepository(categoryDao)
+    }
+
+    fun setQuestionSet(questionSetId: Int) {
+        categoriesFromQuestionSet = repository.getAllCategoriesFromQuestionSet(questionSetId)
     }
 
     fun insertCategory(category: Category) {
@@ -37,12 +43,13 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun getAllCategories(): LiveData<List<Category>> {
-        return repository.allCategories
+        return repository.allCategories()
     }
 
     fun getAllCategoriesFromQuestionSet(questionSetId: Int): LiveData<List<Category>> {
         return repository.getAllCategoriesFromQuestionSet(questionSetId)
     }
+
 
     fun deleteAllCategoriesFromQuestionSet(questionSetId: Int) {
         viewModelScope.launch(Dispatchers.IO) {

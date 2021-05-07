@@ -37,6 +37,7 @@ class ListQuestionSetAdapter(var data: LiveData<List<QuestionSet>>): RecyclerVie
 
         holder.itemView.findViewById<ImageButton>(R.id.editQuestionSetStartButton).setOnClickListener {
             val action = currentItem?.let { it1 -> ListQuestionSetFragmentDirections.actionListQuestionSetFragmentToEditQuestionSetFragment(it1) }
+            
             if (action != null) {
                 holder.itemView.findNavController().navigate(action)
             }

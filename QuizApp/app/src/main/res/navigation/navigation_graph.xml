@@ -88,7 +88,7 @@
     <fragment
         android:id="@+id/listQuestionAndAnswerFragment"
         android:name="com.example.quizapp.view.fragment.ListQuestionAndAnswerFragment"
-        android:label="fragment_list_question_and_answer"
+        android:label="Questions and Answers"
         tools:layout="@layout/fragment_list_question_and_answer" >
         <action
             android:id="@+id/action_listQuestionAndAnswerFragment_to_listCategoryFragment"
@@ -109,7 +109,7 @@
     <fragment
         android:id="@+id/addQuestionAndAnswerFragment"
         android:name="com.example.quizapp.view.fragment.AddQuestionAndAnswerFragment"
-        android:label="fragment_add_question_and_answer"
+        android:label="Add Question and Answer"
         tools:layout="@layout/fragment_add_question_and_answer" >
         <action
             android:id="@+id/action_addQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
@@ -124,7 +124,7 @@
     <fragment
         android:id="@+id/editQuestionAndAnswerFragment"
         android:name="com.example.quizapp.view.fragment.EditQuestionAndAnswerFragment"
-        android:label="fragment_edit_question_and_answer"
+        android:label="Edit Question and Answer"
         tools:layout="@layout/fragment_edit_question_and_answer" >
         <action
             android:id="@+id/action_editQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
