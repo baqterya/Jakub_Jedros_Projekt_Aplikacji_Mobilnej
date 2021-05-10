@@ -11,9 +11,8 @@ class QuestionAndAnswerRepository(private val questionAnswerDao: QuestionAnswerD
         questionAnswerDao.insertQuestionAndAnswer(qna)
     }
 
-    suspend fun editQuestionAndAnswer(question: Question, answer: Answer) {
-        val qna = QuestionAndAnswer(question, answer)
-        questionAnswerDao.editQuestionAndAnswer(qna)
+    suspend fun editQuestionAndAnswer(questionAndAnswer: QuestionAndAnswer) {
+        questionAnswerDao.editQuestionAndAnswer(questionAndAnswer)
     }
 
     suspend fun deleteQuestionAndAnswer(question: Question, answer: Answer) {

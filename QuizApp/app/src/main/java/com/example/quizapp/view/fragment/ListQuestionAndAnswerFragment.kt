@@ -11,11 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentListQuestionAndAnswerBinding
-import com.example.quizapp.model.Answer
-import com.example.quizapp.model.Question
-import com.example.quizapp.model.relations.QuestionAndAnswer
 import com.example.quizapp.view.adapter.ListQuestionAndAnswerAdapter
-import com.example.quizapp.viewmodel.CategoryViewModel
 import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 
 class ListQuestionAndAnswerFragment : Fragment() {
@@ -31,15 +27,16 @@ class ListQuestionAndAnswerFragment : Fragment() {
 
         binding = FragmentListQuestionAndAnswerBinding.inflate(inflater, container, false)
 
+        mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
+        mQuestionAndAnswerViewModel.setCategory(args.categoryId)
+
         val recyclerView = binding.questionAndAnswerRecyclerView
-        val adapter = ListQuestionAndAnswerAdapter()
+        val adapter = ListQuestionAndAnswerAdapter(mQuestionAndAnswerViewModel.questionAndAnswerFromCategory)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
-        mQuestionAndAnswerViewModel.getAllQuestionsAndAnswersFromCategory(args.categoryId).observe(viewLifecycleOwner, { questionsAndAnswers ->
-            adapter.setData(questionsAndAnswers)
-            //adapter.notifyDataSetChanged()
+        mQuestionAndAnswerViewModel.questionAndAnswerFromCategory.observe(viewLifecycleOwner, {
+            adapter.notifyDataSetChanged()
         })
 
         binding.addQuestionAndAnswerFAB.setOnClickListener {

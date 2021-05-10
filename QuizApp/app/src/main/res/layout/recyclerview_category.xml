@@ -37,8 +37,19 @@
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="@id/categoryItemTextView"
             app:layout_constraintBottom_toBottomOf="@id/categoryItemTextView"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/playCategoryButton"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_edit"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/playCategoryButton"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/categoryItemTextView"
+            app:layout_constraintBottom_toBottomOf="@id/categoryItemTextView"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/ic_play"
             android:background="@null"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

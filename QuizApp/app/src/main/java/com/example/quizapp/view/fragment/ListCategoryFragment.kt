@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -31,7 +30,7 @@ class ListCategoryFragment : Fragment() {
         binding = FragmentListCategoryBinding.inflate(inflater, container, false)
 
         mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
-        // to jest zrobione clunky ale działa
+        // it's kinda clunky, but works, so I'll leave it be for now
         mCategoryViewModel.setQuestionSet(args.questionSetId)
         mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
 
@@ -40,7 +39,7 @@ class ListCategoryFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mCategoryViewModel.categoriesFromQuestionSet.observe(viewLifecycleOwner, Observer {
+        mCategoryViewModel.categoriesFromQuestionSet.observe(viewLifecycleOwner, {
             adapter.notifyDataSetChanged()
         })
 

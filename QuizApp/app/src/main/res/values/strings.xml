@@ -28,4 +28,5 @@
     <string name="create_new_question">CREATE NEW QUESTION</string>
     <string name="question_name">QUESTION</string>
     <string name="answer_name">ANSWER</string>
+    <string name="edit_question">EDIT QUESTION</string>
 </resources>

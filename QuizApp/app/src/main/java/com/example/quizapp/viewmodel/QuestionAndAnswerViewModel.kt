@@ -14,10 +14,15 @@ import kotlinx.coroutines.launch
 
 class QuestionAndAnswerViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: QuestionAndAnswerRepository
+    lateinit var questionAndAnswerFromCategory: LiveData<List<QuestionAndAnswer>>
 
     init {
         val questionAndAnswerDao = QuestionSetDatabase.getDatabase(application).questionAndAnswerDao()
         repository = QuestionAndAnswerRepository(questionAndAnswerDao)
+    }
+
+    fun setCategory(categoryId: Int) {
+        questionAndAnswerFromCategory = repository.getAllQuestionsAndAnswersFromCategory(categoryId)
     }
 
     fun insertQuestionAndAnswer(question: Question, answer: Answer) {
@@ -26,9 +31,9 @@ class QuestionAndAnswerViewModel(application: Application) : AndroidViewModel(ap
         }
     }
 
-    fun editQuestionAndAnswer(question: Question, answer: Answer) {
+    fun editQuestionAndAnswer(questionAndAnswer: QuestionAndAnswer) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.editQuestionAndAnswer(question, answer)
+            repository.editQuestionAndAnswer(questionAndAnswer)
         }
     }
 
