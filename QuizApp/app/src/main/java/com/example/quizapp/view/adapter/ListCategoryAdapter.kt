@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.R
 import com.example.quizapp.model.Category
 import com.example.quizapp.view.fragment.ListCategoryFragmentDirections
+import com.example.quizapp.view.fragment.ListQuestionSetFragmentDirections
 
 class ListCategoryAdapter(private var data: LiveData<List<Category>>): RecyclerView.Adapter<ListCategoryAdapter.Holder>() {
 
@@ -46,49 +47,16 @@ class ListCategoryAdapter(private var data: LiveData<List<Category>>): RecyclerV
                 holder.itemView.findNavController().navigate(action)
             }
         }
+
+        holder.itemView.findViewById<ImageButton>(R.id.playCategoryButton).setOnClickListener {
+            val action = currentItem?.let { it1 -> ListCategoryFragmentDirections.actionListCategoryFragmentToQuizPickerFragment(0, it1.categoryId) }
+            if (action != null) {
+                holder.itemView.findNavController().navigate(action)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return data.value?.size?:0
     }
 }
-
-//class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.CategoryViewHolder>() {
-//    private var categoryList = emptyList<Category>()
-//
-//    class CategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-//
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-//        return CategoryViewHolder(LayoutInflater.from(parent.context).inflate(
-//            R.layout.recyclerview_category,
-//            parent,
-//            false
-//        ))
-//    }
-//
-//    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-//        val currentItem = categoryList[position]
-//        holder.itemView.findViewById<TextView>(R.id.categoryItemTextView).text = currentItem.categoryName
-//
-//        holder.itemView.findViewById<ImageButton>(R.id.editCategoryStartButton).setOnClickListener {
-//            val action = ListCategoryFragmentDirections.actionListCategoryFragmentToEditCategoryFragment(currentItem)
-//            holder.itemView.findNavController().navigate(action)
-//        }
-//
-//        holder.itemView.findViewById<CardView>(R.id.categoryItemCardView).setOnClickListener {
-//            val action = ListCategoryFragmentDirections.actionListCategoryFragmentToListQuestionAndAnswerFragment(currentItem.categoryId)
-//            holder.itemView.findNavController().navigate(action)
-//        }
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return categoryList.size
-//    }
-//
-//    fun setData(categories: List<Category>) {
-//        this.categoryList = categories
-//    }
-//
-//}

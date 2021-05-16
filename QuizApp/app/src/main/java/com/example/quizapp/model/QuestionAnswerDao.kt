@@ -24,6 +24,10 @@ interface QuestionAnswerDao {
     fun getQuestionAndAnswerByCategory(categoryId: Int): LiveData<List<QuestionAndAnswer>>
 
     @Transaction
+    @Query("SELECT * FROM question_table WHERE parentQuestionSetId = :questionSetId" )
+    fun getQuestionAndAnswerByQuestionSet(questionSetId: Int): LiveData<List<QuestionAndAnswer>>
+
+    @Transaction
     suspend fun deleteQuestionAndAnswer(questionAndAnswer: QuestionAndAnswer) {
         deleteQuestion(questionAndAnswer.question)
         deleteAnswer(questionAndAnswer.answer)
@@ -82,5 +86,6 @@ interface QuestionAnswerDao {
 
     @Query("DELETE FROM answer_table")
     suspend fun deleteAllAnswers()
+
 
 }

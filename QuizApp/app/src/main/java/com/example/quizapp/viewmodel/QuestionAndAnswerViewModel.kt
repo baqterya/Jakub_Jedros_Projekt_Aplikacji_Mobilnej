@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 class QuestionAndAnswerViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: QuestionAndAnswerRepository
     lateinit var questionAndAnswerFromCategory: LiveData<List<QuestionAndAnswer>>
+    lateinit var questionAndAnswerFromQuestionSet: LiveData<List<QuestionAndAnswer>>
 
     init {
         val questionAndAnswerDao = QuestionSetDatabase.getDatabase(application).questionAndAnswerDao()
@@ -43,8 +44,8 @@ class QuestionAndAnswerViewModel(application: Application) : AndroidViewModel(ap
         }
     }
 
-    fun getAllQuestionsAndAnswersFromCategory(categoryId: Int): LiveData<List<QuestionAndAnswer>> {
-        return repository.getAllQuestionsAndAnswersFromCategory(categoryId)
+    fun getAllQuestionsAndAnswersFromQuestionSet(questionSetId: Int) {
+        questionAndAnswerFromQuestionSet = repository.getAllQuestionsAndAnswersFromQuestionSet(questionSetId)
     }
 
     fun deleteQuestionsAndAnswersFromCategory(categoryId: Int) {

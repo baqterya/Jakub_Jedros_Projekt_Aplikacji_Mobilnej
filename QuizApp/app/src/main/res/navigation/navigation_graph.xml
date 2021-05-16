@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/listQuestionSetFragment">
+
     <fragment
         android:id="@+id/listQuestionSetFragment"
         android:name="com.example.quizapp.view.fragment.ListQuestionSetFragment"
@@ -11,14 +12,21 @@
         tools:layout="@layout/fragment_list_question_set" >
         <action
             android:id="@+id/action_listQuestionSetFragment_to_addQuestionSetFragment"
-            app:destination="@id/addQuestionSetFragment" />
+            app:destination="@id/addQuestionSetFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
         <action
             android:id="@+id/action_listQuestionSetFragment_to_editQuestionSetFragment"
-            app:destination="@id/editQuestionSetFragment" />
+            app:destination="@id/editQuestionSetFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
         <action
             android:id="@+id/action_listQuestionSetFragment_to_listCategoryFragment"
-            app:destination="@id/listCategoryFragment" />
+            app:destination="@id/listCategoryFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
+        <action
+            android:id="@+id/action_listQuestionSetFragment_to_quizPickerFragment"
+            app:destination="@id/quizPickerFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/addQuestionSetFragment"
         android:name="com.example.quizapp.view.fragment.AddQuestionSetFragment"
@@ -26,8 +34,10 @@
         tools:layout="@layout/fragment_add_question_set" >
         <action
             android:id="@+id/action_addQuestionSetFragment_to_listQuestionSetFragment"
-            app:destination="@id/listQuestionSetFragment" />
+            app:destination="@id/listQuestionSetFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/editQuestionSetFragment"
         android:name="com.example.quizapp.view.fragment.EditQuestionSetFragment"
@@ -35,11 +45,13 @@
         tools:layout="@layout/fragment_edit_question_set" >
         <action
             android:id="@+id/action_editQuestionSetFragment_to_listQuestionSetFragment"
-            app:destination="@id/listQuestionSetFragment" />
+            app:destination="@id/listQuestionSetFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
         <argument
             android:name="currentQuestionSet"
             app:argType="com.example.quizapp.model.QuestionSet" />
     </fragment>
+
     <fragment
         android:id="@+id/listCategoryFragment"
         android:name="com.example.quizapp.view.fragment.ListCategoryFragment"
@@ -53,14 +65,20 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_listCategoryFragment_to_editCategoryFragment"
-            app:destination="@id/editCategoryFragment" />
+            app:destination="@id/editCategoryFragment"
+            app:popUpTo="@id/listCategoryFragment" />
         <action
             android:id="@+id/action_listCategoryFragment_to_addCategoryFragment"
-            app:destination="@id/addCategoryFragment" />
+            app:destination="@id/addCategoryFragment"
+            app:popUpTo="@id/listCategoryFragment" />
         <action
             android:id="@+id/action_listCategoryFragment_to_listQuestionAndAnswerFragment"
             app:destination="@id/listQuestionAndAnswerFragment" />
+        <action
+            android:id="@+id/action_listCategoryFragment_to_quizPickerFragment"
+            app:destination="@id/quizPickerFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/addCategoryFragment"
         android:name="com.example.quizapp.view.fragment.AddCategoryFragment"
@@ -71,8 +89,10 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_addCategoryFragment_to_listCategoryFragment"
-            app:destination="@id/listCategoryFragment" />
+            app:destination="@id/listCategoryFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/editCategoryFragment"
         android:name="com.example.quizapp.view.fragment.EditCategoryFragment"
@@ -80,11 +100,13 @@
         tools:layout="@layout/fragment_edit_category" >
         <action
             android:id="@+id/action_editCategoryFragment_to_listCategoryFragment"
-            app:destination="@id/listCategoryFragment" />
+            app:destination="@id/listCategoryFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
         <argument
             android:name="currentCategory"
             app:argType="com.example.quizapp.model.Category" />
     </fragment>
+
     <fragment
         android:id="@+id/listQuestionAndAnswerFragment"
         android:name="com.example.quizapp.view.fragment.ListQuestionAndAnswerFragment"
@@ -95,10 +117,12 @@
             app:destination="@id/listCategoryFragment" />
         <action
             android:id="@+id/action_listQuestionAndAnswerFragment_to_addQuestionAndAnswerFragment"
-            app:destination="@id/addQuestionAndAnswerFragment" />
+            app:destination="@id/addQuestionAndAnswerFragment"
+            app:popUpTo="@id/listQuestionAndAnswerFragment" />
         <action
             android:id="@+id/action_listQuestionAndAnswerFragment_to_editQuestionAndAnswerFragment"
-            app:destination="@id/editQuestionAndAnswerFragment" />
+            app:destination="@id/editQuestionAndAnswerFragment"
+            app:popUpTo="@id/listQuestionAndAnswerFragment" />
         <argument
             android:name="categoryId"
             app:argType="integer" />
@@ -106,6 +130,7 @@
             android:name="questionSetId"
             app:argType="integer" />
     </fragment>
+
     <fragment
         android:id="@+id/addQuestionAndAnswerFragment"
         android:name="com.example.quizapp.view.fragment.AddQuestionAndAnswerFragment"
@@ -113,7 +138,8 @@
         tools:layout="@layout/fragment_add_question_and_answer" >
         <action
             android:id="@+id/action_addQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
-            app:destination="@id/listQuestionAndAnswerFragment" />
+            app:destination="@id/listQuestionAndAnswerFragment"
+            app:popUpTo="@id/listCategoryFragment" />
         <argument
             android:name="categoryId"
             app:argType="integer" />
@@ -121,6 +147,7 @@
             android:name="questionSetId"
             app:argType="integer" />
     </fragment>
+
     <fragment
         android:id="@+id/editQuestionAndAnswerFragment"
         android:name="com.example.quizapp.view.fragment.EditQuestionAndAnswerFragment"
@@ -128,9 +155,41 @@
         tools:layout="@layout/fragment_edit_question_and_answer" >
         <action
             android:id="@+id/action_editQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
-            app:destination="@id/listQuestionAndAnswerFragment" />
+            app:destination="@id/listQuestionAndAnswerFragment"
+            app:popUpTo="@id/listCategoryFragment" />
         <argument
             android:name="currentQuestionAndAnswer"
             app:argType="com.example.quizapp.model.relations.QuestionAndAnswer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/quizSimpleFragment"
+        android:name="com.example.quizapp.view.fragment.QuizSimpleFragment"
+        android:label="Simple Quiz"
+        tools:layout="@layout/fragment_quiz_simple" >
+        <action
+            android:id="@+id/action_quizSimpleFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
+        <argument
+            android:name="listQuestionsAndAnswers"
+            app:argType="com.example.quizapp.model.relations.QuestionAndAnswer[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizPickerFragment"
+        android:name="com.example.quizapp.view.fragment.QuizPickerFragment"
+        android:label="fragment_quiz_picker"
+        tools:layout="@layout/fragment_quiz_picker" >
+        <action
+            android:id="@+id/action_quizPickerFragment_to_quizSimpleFragment"
+            app:destination="@id/quizSimpleFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
+        <argument
+            android:name="questionSetId"
+            app:argType="integer" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
 </navigation>

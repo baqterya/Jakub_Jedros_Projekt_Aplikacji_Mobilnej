@@ -1,6 +1,5 @@
 package com.example.quizapp.view.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.R
 import com.example.quizapp.model.QuestionSet
 import com.example.quizapp.view.fragment.ListQuestionSetFragmentDirections
+import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 
-// spróbuj wrzucić tutal viewmodel jak livedata nie wystarczy
 class ListQuestionSetAdapter(var data: LiveData<List<QuestionSet>>): RecyclerView.Adapter<ListQuestionSetAdapter.Holder>() {
     
     class Holder(view: View, data: LiveData<List<QuestionSet>>): RecyclerView.ViewHolder(view) {
@@ -45,6 +44,13 @@ class ListQuestionSetAdapter(var data: LiveData<List<QuestionSet>>): RecyclerVie
 
         holder.itemView.findViewById<CardView>(R.id.questionSetItemCardView).setOnClickListener {
             val action = currentItem?.let { it1 -> ListQuestionSetFragmentDirections.actionListQuestionSetFragmentToListCategoryFragment(it1.questionSetId) }
+            if (action != null) {
+                holder.itemView.findNavController().navigate(action)
+            }
+        }
+
+        holder.itemView.findViewById<ImageButton>(R.id.playQuestionSetButton).setOnClickListener {
+            val action = currentItem?.let { it1 -> ListQuestionSetFragmentDirections.actionListQuestionSetFragmentToQuizPickerFragment(it1.questionSetId) }
             if (action != null) {
                 holder.itemView.findNavController().navigate(action)
             }

@@ -20,6 +20,9 @@ class QuestionAndAnswerRepository(private val questionAnswerDao: QuestionAnswerD
         questionAnswerDao.deleteQuestionAndAnswer(qna)
     }
 
+    fun getAllQuestionsAndAnswersFromQuestionSet(questionSetId: Int)
+    = questionAnswerDao.getQuestionAndAnswerByQuestionSet(questionSetId)
+
     fun getAllQuestionsAndAnswersFromCategory(categoryId: Int)
     = questionAnswerDao.getQuestionAndAnswerByCategory(categoryId)
 
