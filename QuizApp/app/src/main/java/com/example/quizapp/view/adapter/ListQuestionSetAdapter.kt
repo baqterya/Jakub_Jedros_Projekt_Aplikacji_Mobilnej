@@ -14,7 +14,7 @@ import com.example.quizapp.model.QuestionSet
 import com.example.quizapp.view.fragment.ListQuestionSetFragmentDirections
 import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 
-class ListQuestionSetAdapter(var data: LiveData<List<QuestionSet>>): RecyclerView.Adapter<ListQuestionSetAdapter.Holder>() {
+class ListQuestionSetAdapter(private var data: LiveData<List<QuestionSet>>): RecyclerView.Adapter<ListQuestionSetAdapter.Holder>() {
     
     class Holder(view: View, data: LiveData<List<QuestionSet>>): RecyclerView.ViewHolder(view) {
 

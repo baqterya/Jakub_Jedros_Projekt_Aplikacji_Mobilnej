@@ -30,7 +30,6 @@ class ListCategoryFragment : Fragment() {
         binding = FragmentListCategoryBinding.inflate(inflater, container, false)
 
         mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
-        // it's kinda clunky, but works, so I'll leave it be for now
         mCategoryViewModel.setQuestionSet(args.questionSetId)
         mQuestionAndAnswerViewModel = ViewModelProvider(this).get(QuestionAndAnswerViewModel::class.java)
 

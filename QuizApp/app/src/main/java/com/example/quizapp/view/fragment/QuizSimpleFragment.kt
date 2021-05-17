@@ -130,6 +130,7 @@ class QuizSimpleFragment : Fragment() {
             binding.quizSimpleAnswer2.visibility = View.INVISIBLE
             binding.quizSimpleAnswer3.visibility = View.INVISIBLE
             binding.quizSimpleAnswer4.visibility = View.INVISIBLE
+            binding.quizSimplePointCounter.visibility = View.INVISIBLE
         }
     }
 }
