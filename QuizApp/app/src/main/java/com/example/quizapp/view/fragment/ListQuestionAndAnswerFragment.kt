@@ -50,12 +50,16 @@ class ListQuestionAndAnswerFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_menu, menu)
+        inflater.inflate(R.menu.topbar_menu, menu)
+        menu.findItem(R.id.menuSettings).isVisible = true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menuDelete) {
             deleteAll()
+        }
+        if (item.itemId == R.id.menuSettings) {
+            findNavController().navigate(R.id.action_listQuestionAndAnswerFragment_to_settingsFragment)
         }
         return super.onOptionsItemSelected(item)
     }

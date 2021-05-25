@@ -16,9 +16,7 @@ import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 
 class ListQuestionSetAdapter(private var data: LiveData<List<QuestionSet>>): RecyclerView.Adapter<ListQuestionSetAdapter.Holder>() {
     
-    class Holder(view: View, data: LiveData<List<QuestionSet>>): RecyclerView.ViewHolder(view) {
-
-    }
+    class Holder(view: View, data: LiveData<List<QuestionSet>>): RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -36,7 +34,7 @@ class ListQuestionSetAdapter(private var data: LiveData<List<QuestionSet>>): Rec
 
         holder.itemView.findViewById<ImageButton>(R.id.editQuestionSetStartButton).setOnClickListener {
             val action = currentItem?.let { it1 -> ListQuestionSetFragmentDirections.actionListQuestionSetFragmentToEditQuestionSetFragment(it1) }
-            
+
             if (action != null) {
                 holder.itemView.findNavController().navigate(action)
             }

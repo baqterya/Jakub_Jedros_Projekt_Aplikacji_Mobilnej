@@ -33,4 +33,7 @@
     <string name="you_got_x_points">You got X points!</string>
     <string name="congratulations">Congratulations!</string>
     <string name="go_back">Return</string>
+    <string name="set_training_alarm">SET TRAINING ALARM</string>
+    <string name="set_time">set time</string>
+    <string name="disable">disable</string>
 </resources>

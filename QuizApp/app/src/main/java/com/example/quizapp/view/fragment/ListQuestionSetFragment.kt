@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -30,7 +32,6 @@ class ListQuestionSetFragment : Fragment() {
     ): View {
         binding = FragmentListQuestionSetBinding.inflate(inflater, container, false)
 
-        // TODO recycler view nie update'uje sie wtedy kiedy powinien
         // QuestionSetViewModel
         mQuestionSetViewModel = ViewModelProvider(this).get(QuestionSetViewModel::class.java)
         mCategoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
@@ -57,12 +58,16 @@ class ListQuestionSetFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_menu, menu)
+        inflater.inflate(R.menu.topbar_menu, menu)
+        menu.findItem(R.id.menuSettings).isVisible = true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menuDelete) {
             deleteAll()
+        }
+        if (item.itemId == R.id.menuSettings) {
+            findNavController().navigate(R.id.action_listQuestionSetFragment_to_settingsFragment)
         }
         return super.onOptionsItemSelected(item)
     }

@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_listQuestionSetFragment_to_quizPickerFragment"
             app:destination="@id/quizPickerFragment" />
+        <action
+            android:id="@+id/action_listQuestionSetFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -77,6 +80,9 @@
         <action
             android:id="@+id/action_listCategoryFragment_to_quizPickerFragment"
             app:destination="@id/quizPickerFragment" />
+        <action
+            android:id="@+id/action_listCategoryFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -129,6 +135,12 @@
         <argument
             android:name="questionSetId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_listQuestionAndAnswerFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
+        <action
+            android:id="@+id/action_listQuestionAndAnswerFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -190,6 +202,15 @@
             android:name="categoryId"
             app:argType="integer"
             android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.quizapp.view.fragment.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
     </fragment>
 
 </navigation>

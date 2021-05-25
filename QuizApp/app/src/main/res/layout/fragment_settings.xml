@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.SettingsFragment">
 
     <TextView
+        android:id="@+id/settingsTextView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SETTINGS"
-        android:textSize="35sp"
-        android:textColor="@color/new_on_background"
+        android:layout_height="wrap_content"
+        android:text="@string/set_training_alarm"
+        android:paddingTop="40dp"
+        android:layout_margin="10dp"
+        android:textSize="25sp"
         android:gravity="center"
-        android:textAlignment="center"/>
+        android:textColor="@color/new_on_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/settingsAlarmTimePickerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_time"
+        android:layout_marginTop="17dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsTextView1"/>
+
+    <Button
+        android:id="@+id/settingsAlarmDisableButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/disable"
+        android:layout_marginTop="17dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsAlarmTimePickerButton"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
