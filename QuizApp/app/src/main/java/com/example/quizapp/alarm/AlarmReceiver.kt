@@ -17,7 +17,6 @@ class AlarmReceiver : BroadcastReceiver() {
     private val CHANNEL_NAME = "CHANNEL_NAME"
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        Log.d("onrecieve", "onReceive: aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 
         if (context != null) {
             createNotificationChannel(context)
@@ -31,9 +30,6 @@ class AlarmReceiver : BroadcastReceiver() {
 
             val notificationManager = NotificationManagerCompat.from(context)
             notificationManager.notify(NOTIFICATION_ID, notification)
-        } else {
-            Log.d("onrecieve", "onReceive: bvvasdfafasdfglknmalfgnm")
-
         }
     }
 

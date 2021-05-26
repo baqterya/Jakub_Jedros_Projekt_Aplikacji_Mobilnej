@@ -185,6 +185,9 @@
         <argument
             android:name="listQuestionsAndAnswers"
             app:argType="com.example.quizapp.model.relations.QuestionAndAnswer[]" />
+        <argument
+            android:name="questionAmount"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/quizPickerFragment"
@@ -202,6 +205,14 @@
             android:name="categoryId"
             app:argType="integer"
             android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_quizPickerFragment_to_quizTimeFragment"
+            app:destination="@id/quizTimeFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
+        <action
+            android:id="@+id/action_quizPickerFragment_to_quizWritingFragment"
+            app:destination="@id/quizWritingFragment"
+            app:popUpTo="@id/listQuestionSetFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -211,6 +222,33 @@
         <action
             android:id="@+id/action_settingsFragment_to_listQuestionSetFragment"
             app:destination="@id/listQuestionSetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizTimeFragment"
+        android:name="com.example.quizapp.view.fragment.QuizTimeFragment"
+        android:label="fragment_quiz_time"
+        tools:layout="@layout/fragment_quiz_time" >
+        <action
+            android:id="@+id/action_quizTimeFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
+        <argument
+            android:name="listQuestionsAndAnswers"
+            app:argType="com.example.quizapp.model.relations.QuestionAndAnswer[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizWritingFragment"
+        android:name="com.example.quizapp.view.fragment.QuizWritingFragment"
+        android:label="fragment_quiz_writing"
+        tools:layout="@layout/fragment_quiz_writing" >
+        <action
+            android:id="@+id/action_quizWritingFragment_to_listQuestionSetFragment"
+            app:destination="@id/listQuestionSetFragment" />
+        <argument
+            android:name="listQuestionsAndAnswers"
+            app:argType="com.example.quizapp.model.relations.QuestionAndAnswer[]" />
+        <argument
+            android:name="questionAmount"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

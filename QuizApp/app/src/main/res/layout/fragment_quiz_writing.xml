@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.QuizSimpleFragment">
+    tools:context=".view.fragment.QuizWritingFragment">
 
     <TextView
-        android:id="@+id/quizSimplePointCounter"
+        android:id="@+id/quizWritingPointCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
@@ -18,57 +18,40 @@
         android:layout_margin="12dp"/>
 
     <TextView
-        android:id="@+id/quizSimpleQuestion"
+        android:id="@+id/quizWritingQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/question_name_dummy"
         android:textSize="45sp"
         android:textColor="@color/new_on_background"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimplePointCounter"
+        app:layout_constraintTop_toBottomOf="@+id/quizWritingPointCounter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <Button
-        android:id="@+id/quizSimpleAnswer1"
+    <EditText
+        android:id="@+id/quizWritingEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/answer_name"
-        android:layout_marginTop="100dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleQuestion"
+        android:layout_marginTop="85dp"
+        android:textSize="24sp"
+        android:hint="@string/answer_name"
+        android:textColorHint="@color/new_on_background"
+        android:textColor="@color/new_on_background"
+        android:backgroundTint="@color/new_on_background"
+        app:layout_constraintTop_toBottomOf="@+id/quizWritingQuestion"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        android:autofillHints="@string/answer_name"
+        android:inputType="text" />
 
     <Button
-        android:id="@+id/quizSimpleAnswer2"
+        android:id="@+id/quizWritingCheckButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/answer_name"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleAnswer1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-
-    <Button
-        android:id="@+id/quizSimpleAnswer3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/answer_name"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleAnswer2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-
-    <Button
-        android:id="@+id/quizSimpleAnswer4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/answer_name"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleAnswer3"
+        android:layout_marginTop="40dp"
+        android:text="@string/check"
+        app:layout_constraintTop_toBottomOf="@id/quizWritingEditText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />

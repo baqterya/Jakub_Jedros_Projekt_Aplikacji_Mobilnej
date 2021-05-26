@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.QuizSimpleFragment">
+    tools:context=".view.fragment.QuizTimeFragment">
 
+    <ProgressBar
+        android:id="@+id/quizTimeProgressBar"
+        android:minWidth="200dp"
+        android:minHeight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:min="0"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progressTint="@color/new_error"
+        android:progress="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/quizTimeQuestion"
+        android:layout_margin="12dp"
+        />
+    
     <TextView
-        android:id="@+id/quizSimplePointCounter"
+        android:id="@+id/quizTimePointCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
@@ -18,57 +36,57 @@
         android:layout_margin="12dp"/>
 
     <TextView
-        android:id="@+id/quizSimpleQuestion"
+        android:id="@+id/quizTimeQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/question_name_dummy"
         android:textSize="45sp"
         android:textColor="@color/new_on_background"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimplePointCounter"
+        app:layout_constraintTop_toBottomOf="@+id/quizTimePointCounter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:id="@+id/quizSimpleAnswer1"
+        android:id="@+id/quizTimeAnswer1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/answer_name"
         android:layout_marginTop="100dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/quizTimeQuestion"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <Button
-        android:id="@+id/quizSimpleAnswer2"
+        android:id="@+id/quizTimeAnswer2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/answer_name"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleAnswer1"
+        app:layout_constraintTop_toBottomOf="@+id/quizTimeAnswer1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <Button
-        android:id="@+id/quizSimpleAnswer3"
+        android:id="@+id/quizTimeAnswer3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/answer_name"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleAnswer2"
+        app:layout_constraintTop_toBottomOf="@+id/quizTimeAnswer2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <Button
-        android:id="@+id/quizSimpleAnswer4"
+        android:id="@+id/quizTimeAnswer4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/answer_name"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/quizSimpleAnswer3"
+        app:layout_constraintTop_toBottomOf="@+id/quizTimeAnswer3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
