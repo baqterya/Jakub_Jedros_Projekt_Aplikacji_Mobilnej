@@ -119,7 +119,7 @@ class QuizTimeFragment : Fragment() {
         val string = "You got ${binding.quizTimePointCounter.text} points in $secondsPassed seconds"
         dialog.findViewById<TextView>(R.id.dialogFinishQuizTextView2).text = string
         dialog.findViewById<Button>(R.id.dialogFinishQuizButtonReturn).setOnClickListener {
-            val action = QuizSimpleFragmentDirections.actionQuizSimpleFragmentToListQuestionSetFragment()
+            val action = QuizTimeFragmentDirections.actionQuizTimeFragmentToListQuestionSetFragment()
             findNavController().navigate(action)
             dialog.dismiss()
         }

@@ -14,6 +14,8 @@ import com.afollestad.materialdialogs.customview.customView
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentQuizWritingBinding
 import com.example.quizapp.model.relations.QuestionAndAnswer
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class QuizWritingFragment : Fragment() {
@@ -51,7 +53,7 @@ class QuizWritingFragment : Fragment() {
     }
 
     private fun checkAnswer() {
-        if (binding.quizWritingEditText.text.toString() == currentQuestion.answer.answerText) {
+        if (binding.quizWritingEditText.text.toString().equals(currentQuestion.answer.answerText, ignoreCase = true)) {
             pointCounter.text = (pointCounter.text.toString().toInt() + 1).toString()
         }
 
@@ -71,7 +73,7 @@ class QuizWritingFragment : Fragment() {
         val string = "You got ${pointCounter.text} points"
         dialog.findViewById<TextView>(R.id.dialogFinishQuizTextView2).text = string
         dialog.findViewById<Button>(R.id.dialogFinishQuizButtonReturn).setOnClickListener {
-            val action = QuizSimpleFragmentDirections.actionQuizSimpleFragmentToListQuestionSetFragment()
+            val action = QuizWritingFragmentDirections.actionQuizWritingFragmentToListQuestionSetFragment()
             findNavController().navigate(action)
             dialog.dismiss()
         }
