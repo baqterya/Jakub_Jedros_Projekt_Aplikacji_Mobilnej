@@ -74,8 +74,8 @@ class QuizWritingFragment : Fragment() {
         dialog.findViewById<TextView>(R.id.dialogFinishQuizTextView2).text = string
         dialog.findViewById<Button>(R.id.dialogFinishQuizButtonReturn).setOnClickListener {
             val action = QuizWritingFragmentDirections.actionQuizWritingFragmentToListQuestionSetFragment()
-            findNavController().navigate(action)
             dialog.dismiss()
+            findNavController().navigate(action)
         }
 
         dialog.show()

@@ -120,11 +120,16 @@ class QuizTimeFragment : Fragment() {
         dialog.findViewById<TextView>(R.id.dialogFinishQuizTextView2).text = string
         dialog.findViewById<Button>(R.id.dialogFinishQuizButtonReturn).setOnClickListener {
             val action = QuizTimeFragmentDirections.actionQuizTimeFragmentToListQuestionSetFragment()
-            findNavController().navigate(action)
             dialog.dismiss()
+            findNavController().navigate(action)
         }
 
         dialog.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
     }
 
     inner class MyTimer(var time: Long, interval: Long) : CountDownTimer(time, interval) {
@@ -138,4 +143,5 @@ class QuizTimeFragment : Fragment() {
         }
 
     }
+
 }

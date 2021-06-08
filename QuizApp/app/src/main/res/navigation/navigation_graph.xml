@@ -88,7 +88,7 @@
     <fragment
         android:id="@+id/addCategoryFragment"
         android:name="com.example.quizapp.view.fragment.AddCategoryFragment"
-        android:label="fragment_add_category"
+        android:label="Add Category"
         tools:layout="@layout/fragment_add_category" >
         <argument
             android:name="questionSetId"
@@ -102,7 +102,7 @@
     <fragment
         android:id="@+id/editCategoryFragment"
         android:name="com.example.quizapp.view.fragment.EditCategoryFragment"
-        android:label="fragment_edit_category"
+        android:label="Edit Category"
         tools:layout="@layout/fragment_edit_category" >
         <action
             android:id="@+id/action_editCategoryFragment_to_listCategoryFragment"
@@ -192,7 +192,7 @@
     <fragment
         android:id="@+id/quizPickerFragment"
         android:name="com.example.quizapp.view.fragment.QuizPickerFragment"
-        android:label="fragment_quiz_picker"
+        android:label=""
         tools:layout="@layout/fragment_quiz_picker" >
         <action
             android:id="@+id/action_quizPickerFragment_to_quizSimpleFragment"
@@ -217,7 +217,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.quizapp.view.fragment.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="Settings"
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settingsFragment_to_listQuestionSetFragment"
@@ -226,7 +226,7 @@
     <fragment
         android:id="@+id/quizTimeFragment"
         android:name="com.example.quizapp.view.fragment.QuizTimeFragment"
-        android:label="fragment_quiz_time"
+        android:label="TimeQuiz"
         tools:layout="@layout/fragment_quiz_time" >
         <action
             android:id="@+id/action_quizTimeFragment_to_listQuestionSetFragment"
@@ -238,7 +238,7 @@
     <fragment
         android:id="@+id/quizWritingFragment"
         android:name="com.example.quizapp.view.fragment.QuizWritingFragment"
-        android:label="fragment_quiz_writing"
+        android:label="WritingQuiz"
         tools:layout="@layout/fragment_quiz_writing" >
         <action
             android:id="@+id/action_quizWritingFragment_to_listQuestionSetFragment"
