@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.QuizApp.Picker" parent="Theme.QuizApp">
+        <item name="android:textColorPrimary">@color/new_on_primary</item>
+        <item name="colorControlNormal">@color/new_on_primary</item>
+    </style>
+
+</resources>

@@ -29,8 +29,6 @@ class QuizTimeFragment : Fragment() {
     private lateinit var timer: CountDownTimer
 
     private var listAnswers = arrayListOf<String>()
-    private var answerCounter = 0
-    private var secondsPassed = 0
 
     private val args by navArgs<QuizTimeFragmentArgs>()
 
@@ -116,7 +114,7 @@ class QuizTimeFragment : Fragment() {
             .noAutoDismiss()
             .customView(R.layout.dialog_finish_quiz)
 
-        val string = "You got ${binding.quizTimePointCounter.text} points in $secondsPassed seconds"
+        val string = "You got ${binding.quizTimePointCounter.text} points"
         dialog.findViewById<TextView>(R.id.dialogFinishQuizTextView2).text = string
         dialog.findViewById<Button>(R.id.dialogFinishQuizButtonReturn).setOnClickListener {
             val action = QuizTimeFragmentDirections.actionQuizTimeFragmentToListQuestionSetFragment()

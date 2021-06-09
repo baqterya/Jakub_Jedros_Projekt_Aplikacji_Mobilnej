@@ -2,6 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="Theme.QuizApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:windowLightNavigationBar">false</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/new_primary</item>
         <item name="colorPrimaryVariant">@color/new_primary_variant</item>

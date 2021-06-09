@@ -1,6 +1,7 @@
 package com.example.quizapp.view.fragment
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
@@ -15,7 +16,11 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentListQuestionSetBinding
+import com.example.quizapp.model.Answer
+import com.example.quizapp.model.Category
+import com.example.quizapp.model.Question
 import com.example.quizapp.model.QuestionSet
+import com.example.quizapp.model.relations.QuestionAndAnswer
 import com.example.quizapp.view.adapter.ListQuestionSetAdapter
 import com.example.quizapp.viewmodel.CategoryViewModel
 import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
@@ -51,6 +56,12 @@ class ListQuestionSetFragment : Fragment() {
 
         mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, {
             adapter.notifyDataSetChanged()
+
+            // TEMPORARY AND FOR DB PROJECT!!!
+            if (it.isEmpty() and notPopulated()) {
+                populateDatabase()
+                saveData()
+            }
         })
 
         binding.addQuestionSetFAB.setOnClickListener {
@@ -123,5 +134,71 @@ class ListQuestionSetFragment : Fragment() {
 
     private fun inputCheck(name: String): Boolean {
         return !(TextUtils.isEmpty(name))
+    }
+
+    private fun notPopulated() : Boolean {
+        val sharedPreferences = context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        val notPopulated = sharedPreferences?.getBoolean("IS_NOT_POPULATED", true)
+        return notPopulated ?: true
+    }
+
+    private fun saveData() {
+        val notPopulated = false
+        val sharedPreferences = context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.apply {
+            putBoolean("IS_NOT_POPULATED", notPopulated)
+        }?.apply()
+    }
+
+    private fun populateDatabase() {
+        val japanese = QuestionSet(1, "Japanese (example)")
+
+        val categories = mutableListOf(
+            Category(1, "Verbs", japanese.questionSetId),
+            Category(2, "Food", japanese.questionSetId),
+        )
+        val questionsAndAnswers = mutableListOf(
+            QuestionAndAnswer(
+                Question(0, "のむ", 1, 1),
+                Answer(0, "to drink", "のむ", 1, 1)
+            ),
+            QuestionAndAnswer(
+                Question(1, "たべる", 1, 1),
+                Answer(1, "to eat", "たべる", 1, 1)
+            ),
+            QuestionAndAnswer(
+                Question(2, "あける", 1, 1),
+                Answer(2, "to open", "あける", 1, 1)
+            ),
+            QuestionAndAnswer(
+                Question(3, "かく", 1, 1),
+                Answer(3, "to write", "かく", 1, 1)
+            ),
+            QuestionAndAnswer(
+                Question(4, "つくる", 1, 1),
+                Answer(4, "to make", "つくる", 1, 1)
+            ),
+            QuestionAndAnswer(
+                Question(5, "はしる", 1, 1),
+                Answer(5, "to run", "はしる", 1, 1)
+            ),
+            QuestionAndAnswer(
+                Question(6, "えび", 2, 1),
+                Answer(6, "shrimp", "えび", 2, 1)
+            ),
+            QuestionAndAnswer(
+                Question(7, "りんご", 2, 1),
+                Answer(7, "apple", "りんご", 2, 1)
+            )
+        )
+
+        mQuestionSetViewModel.insertQuestionSet(japanese)
+        categories.forEach {
+            mCategoryViewModel.insertCategory(it)
+        }
+        questionsAndAnswers.forEach {
+            mQuestionAndAnswerViewModel.insertQuestionAndAnswer(it.question, it.answer)
+        }
     }
 }
