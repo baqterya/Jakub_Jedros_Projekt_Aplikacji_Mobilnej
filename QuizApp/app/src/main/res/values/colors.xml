@@ -17,7 +17,7 @@
     <color name = "new_surface">#121212</color>
     <color name = "new_error">#FFA500</color>
     <color name = "new_on_primary">#F0F4F8</color>
-    <color name = "new_on_secondary">#000000</color>
+    <color name = "new_on_secondary">#F0F4F8</color>
     <color name = "new_on_background">#F0F4F8</color>
     <color name = "new_on_surface">#F0F4F8</color>
     <color name = "new_on_error">#000000</color>

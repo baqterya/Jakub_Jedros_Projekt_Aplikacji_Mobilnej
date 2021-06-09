@@ -11,14 +11,6 @@
         android:label="Question Sets"
         tools:layout="@layout/fragment_list_question_set" >
         <action
-            android:id="@+id/action_listQuestionSetFragment_to_addQuestionSetFragment"
-            app:destination="@id/addQuestionSetFragment"
-            app:popUpTo="@id/listQuestionSetFragment" />
-        <action
-            android:id="@+id/action_listQuestionSetFragment_to_editQuestionSetFragment"
-            app:destination="@id/editQuestionSetFragment"
-            app:popUpTo="@id/listQuestionSetFragment" />
-        <action
             android:id="@+id/action_listQuestionSetFragment_to_listCategoryFragment"
             app:destination="@id/listCategoryFragment"
             app:popUpTo="@id/listQuestionSetFragment" />
@@ -28,31 +20,6 @@
         <action
             android:id="@+id/action_listQuestionSetFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addQuestionSetFragment"
-        android:name="com.example.quizapp.view.fragment.AddQuestionSetFragment"
-        android:label="Add Question Set"
-        tools:layout="@layout/fragment_add_question_set" >
-        <action
-            android:id="@+id/action_addQuestionSetFragment_to_listQuestionSetFragment"
-            app:destination="@id/listQuestionSetFragment"
-            app:popUpTo="@id/listQuestionSetFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/editQuestionSetFragment"
-        android:name="com.example.quizapp.view.fragment.EditQuestionSetFragment"
-        android:label="Edit Question Set"
-        tools:layout="@layout/fragment_edit_question_set" >
-        <action
-            android:id="@+id/action_editQuestionSetFragment_to_listQuestionSetFragment"
-            app:destination="@id/listQuestionSetFragment"
-            app:popUpTo="@id/listQuestionSetFragment" />
-        <argument
-            android:name="currentQuestionSet"
-            app:argType="com.example.quizapp.model.QuestionSet" />
     </fragment>
 
     <fragment
@@ -67,14 +34,6 @@
             android:name="questionSetId"
             app:argType="integer" />
         <action
-            android:id="@+id/action_listCategoryFragment_to_editCategoryFragment"
-            app:destination="@id/editCategoryFragment"
-            app:popUpTo="@id/listCategoryFragment" />
-        <action
-            android:id="@+id/action_listCategoryFragment_to_addCategoryFragment"
-            app:destination="@id/addCategoryFragment"
-            app:popUpTo="@id/listCategoryFragment" />
-        <action
             android:id="@+id/action_listCategoryFragment_to_listQuestionAndAnswerFragment"
             app:destination="@id/listQuestionAndAnswerFragment" />
         <action
@@ -86,34 +45,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/addCategoryFragment"
-        android:name="com.example.quizapp.view.fragment.AddCategoryFragment"
-        android:label="Add Category"
-        tools:layout="@layout/fragment_add_category" >
-        <argument
-            android:name="questionSetId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_addCategoryFragment_to_listCategoryFragment"
-            app:destination="@id/listCategoryFragment"
-            app:popUpTo="@id/listQuestionSetFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/editCategoryFragment"
-        android:name="com.example.quizapp.view.fragment.EditCategoryFragment"
-        android:label="Edit Category"
-        tools:layout="@layout/fragment_edit_category" >
-        <action
-            android:id="@+id/action_editCategoryFragment_to_listCategoryFragment"
-            app:destination="@id/listCategoryFragment"
-            app:popUpTo="@id/listQuestionSetFragment" />
-        <argument
-            android:name="currentCategory"
-            app:argType="com.example.quizapp.model.Category" />
-    </fragment>
-
-    <fragment
         android:id="@+id/listQuestionAndAnswerFragment"
         android:name="com.example.quizapp.view.fragment.ListQuestionAndAnswerFragment"
         android:label="Questions and Answers"
@@ -121,14 +52,6 @@
         <action
             android:id="@+id/action_listQuestionAndAnswerFragment_to_listCategoryFragment"
             app:destination="@id/listCategoryFragment" />
-        <action
-            android:id="@+id/action_listQuestionAndAnswerFragment_to_addQuestionAndAnswerFragment"
-            app:destination="@id/addQuestionAndAnswerFragment"
-            app:popUpTo="@id/listQuestionAndAnswerFragment" />
-        <action
-            android:id="@+id/action_listQuestionAndAnswerFragment_to_editQuestionAndAnswerFragment"
-            app:destination="@id/editQuestionAndAnswerFragment"
-            app:popUpTo="@id/listQuestionAndAnswerFragment" />
         <argument
             android:name="categoryId"
             app:argType="integer" />
@@ -141,37 +64,6 @@
         <action
             android:id="@+id/action_listQuestionAndAnswerFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addQuestionAndAnswerFragment"
-        android:name="com.example.quizapp.view.fragment.AddQuestionAndAnswerFragment"
-        android:label="Add Question and Answer"
-        tools:layout="@layout/fragment_add_question_and_answer" >
-        <action
-            android:id="@+id/action_addQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
-            app:destination="@id/listQuestionAndAnswerFragment"
-            app:popUpTo="@id/listCategoryFragment" />
-        <argument
-            android:name="categoryId"
-            app:argType="integer" />
-        <argument
-            android:name="questionSetId"
-            app:argType="integer" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/editQuestionAndAnswerFragment"
-        android:name="com.example.quizapp.view.fragment.EditQuestionAndAnswerFragment"
-        android:label="Edit Question and Answer"
-        tools:layout="@layout/fragment_edit_question_and_answer" >
-        <action
-            android:id="@+id/action_editQuestionAndAnswerFragment_to_listQuestionAndAnswerFragment"
-            app:destination="@id/listQuestionAndAnswerFragment"
-            app:popUpTo="@id/listCategoryFragment" />
-        <argument
-            android:name="currentQuestionAndAnswer"
-            app:argType="com.example.quizapp.model.relations.QuestionAndAnswer" />
     </fragment>
 
     <fragment

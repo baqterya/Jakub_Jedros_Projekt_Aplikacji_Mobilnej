@@ -1,7 +1,6 @@
 package com.example.quizapp.repository
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
 import com.example.quizapp.model.Category
 import com.example.quizapp.model.CategoryDao
 

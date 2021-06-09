@@ -2,22 +2,24 @@ package com.example.quizapp.view.fragment
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.*
-import androidx.fragment.app.Fragment
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentListQuestionSetBinding
+import com.example.quizapp.model.QuestionSet
 import com.example.quizapp.view.adapter.ListQuestionSetAdapter
 import com.example.quizapp.viewmodel.CategoryViewModel
 import com.example.quizapp.viewmodel.QuestionAndAnswerViewModel
 import com.example.quizapp.viewmodel.QuestionSetViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListQuestionSetFragment : Fragment() {
     private lateinit var binding: FragmentListQuestionSetBinding
@@ -39,17 +41,20 @@ class ListQuestionSetFragment : Fragment() {
 
         // Recycler View
         val recyclerView = binding.questionSetRecyclerView
-        val adapter = ListQuestionSetAdapter(mQuestionSetViewModel.allQuestionSets)
+        val adapter = ListQuestionSetAdapter(
+            mQuestionSetViewModel.allQuestionSets, mQuestionSetViewModel,
+            mCategoryViewModel, mQuestionAndAnswerViewModel
+        )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
-        mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, Observer {
+        mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, {
             adapter.notifyDataSetChanged()
         })
 
         binding.addQuestionSetFAB.setOnClickListener {
-            findNavController().navigate(R.id.action_listQuestionSetFragment_to_addQuestionSetFragment)
+            addQuestionSetDialog()
         }
 
         setHasOptionsMenu(true)
@@ -69,6 +74,16 @@ class ListQuestionSetFragment : Fragment() {
         if (item.itemId == R.id.menuSettings) {
             findNavController().navigate(R.id.action_listQuestionSetFragment_to_settingsFragment)
         }
+        if (item.itemId == R.id.menuHelp) {
+            val dialog = MaterialDialog(requireContext())
+                .noAutoDismiss()
+                .customView(R.layout.dialog_help)
+            dialog.findViewById<Button>(R.id.helpGotItButton).setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -86,4 +101,27 @@ class ListQuestionSetFragment : Fragment() {
         builder.create().show()
     }
 
+    private fun addQuestionSetDialog() {
+        val dialog = MaterialDialog(requireContext())
+            .noAutoDismiss()
+            .customView(R.layout.dialog_add_question_set)
+
+        dialog.findViewById<Button>(R.id.dialogAddQuestionSetButton).setOnClickListener {
+            val questionSetName = dialog.findViewById<EditText>(R.id.dialogAddQuestionSetEditText).text.toString()
+            if (inputCheck(questionSetName)) {
+                val questionSet = QuestionSet(0, questionSetName)
+                mQuestionSetViewModel.insertQuestionSet(questionSet)
+                Toast.makeText(requireContext(), "Question Set added!", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "Please enter the name", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun inputCheck(name: String): Boolean {
+        return !(TextUtils.isEmpty(name))
+    }
 }

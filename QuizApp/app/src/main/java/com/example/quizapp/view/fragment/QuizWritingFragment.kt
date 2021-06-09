@@ -14,7 +14,6 @@ import com.afollestad.materialdialogs.customview.customView
 import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentQuizWritingBinding
 import com.example.quizapp.model.relations.QuestionAndAnswer
-import java.util.*
 import kotlin.collections.ArrayList
 
 

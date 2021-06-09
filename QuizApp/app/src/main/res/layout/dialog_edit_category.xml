@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/new_primary_variant">
+
+    <TextView
+        android:id="@+id/dialogEditCategoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="18sp"
+        android:textColor="@color/new_on_background"
+        android:text="@string/edit_category"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/dialogEditCategoryEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:padding="10dp"
+        android:background="@color/new_primary"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/new_on_background"
+        android:hint="@string/edit_name"
+        android:textColorHint="@color/new_on_primary"
+        android:autofillHints="EDIT CATEGORY"
+        app:layout_constraintTop_toBottomOf="@id/dialogEditCategoryTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:inputType="text"
+        android:labelFor="@id/dialogEditCategoryEditText"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/dialogEditCategoryPlayButton"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/play"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/dialogEditCategoryEditText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/dialogEditCategoryButton"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/edit"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/dialogEditCategoryPlayButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/dialogEditCategoryDeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_delete"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@id/dialogEditCategoryButton"
+        app:layout_constraintTop_toTopOf="@id/dialogEditCategoryButton"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="6dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

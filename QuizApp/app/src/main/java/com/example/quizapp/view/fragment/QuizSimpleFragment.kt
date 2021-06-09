@@ -12,9 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.example.quizapp.R
-import com.example.quizapp.databinding.DialogFinishQuizBinding
 import com.example.quizapp.databinding.FragmentQuizSimpleBinding
-import com.example.quizapp.model.Answer
 import com.example.quizapp.model.relations.QuestionAndAnswer
 
 class QuizSimpleFragment : Fragment() {

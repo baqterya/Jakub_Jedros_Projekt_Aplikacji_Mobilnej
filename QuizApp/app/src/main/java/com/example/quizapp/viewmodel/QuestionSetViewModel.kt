@@ -4,11 +4,9 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.quizapp.database.QuestionSetDatabase
 import com.example.quizapp.model.QuestionSet
-import com.example.quizapp.model.QuestionSetDao
 import com.example.quizapp.repository.QuestionSetRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.IllegalArgumentException
 
 class QuestionSetViewModel(application: Application) : AndroidViewModel(application) {
     val allQuestionSets: LiveData<List<QuestionSet>>

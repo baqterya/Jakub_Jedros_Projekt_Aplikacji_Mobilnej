@@ -2,9 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/menuHelp"
+        android:title="@string/help"
+        android:icon="@drawable/ic_help"
+        app:showAsAction="ifRoom"/>
+
     <item android:id="@+id/menuSettings"
         android:title="@string/settings"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_notification"
         app:showAsAction="ifRoom"
         android:visible="false"/>
 
