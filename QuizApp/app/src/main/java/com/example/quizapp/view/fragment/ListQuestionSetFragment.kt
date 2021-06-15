@@ -57,7 +57,7 @@ class ListQuestionSetFragment : Fragment() {
         mQuestionSetViewModel.allQuestionSets.observe(viewLifecycleOwner, {
             adapter.notifyDataSetChanged()
 
-            // TEMPORARY AND FOR DB PROJECT!!!
+            // example
             if (it.isEmpty() and notPopulated()) {
                 populateDatabase()
                 saveData()
@@ -154,11 +154,11 @@ class ListQuestionSetFragment : Fragment() {
     private fun populateDatabase() {
         val japanese = QuestionSet(1, "Japanese (example)")
 
-        val categories = mutableListOf(
+        val categoriesJapanese = mutableListOf(
             Category(1, "Verbs", japanese.questionSetId),
             Category(2, "Food", japanese.questionSetId),
         )
-        val questionsAndAnswers = mutableListOf(
+        val questionsAndAnswersJapanese = mutableListOf(
             QuestionAndAnswer(
                 Question(0, "のむ", 1, 1),
                 Answer(0, "to drink", "のむ", 1, 1)
@@ -194,10 +194,10 @@ class ListQuestionSetFragment : Fragment() {
         )
 
         mQuestionSetViewModel.insertQuestionSet(japanese)
-        categories.forEach {
+        categoriesJapanese.forEach {
             mCategoryViewModel.insertCategory(it)
         }
-        questionsAndAnswers.forEach {
+        questionsAndAnswersJapanese.forEach {
             mQuestionAndAnswerViewModel.insertQuestionAndAnswer(it.question, it.answer)
         }
     }
